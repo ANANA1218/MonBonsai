@@ -1,4 +1,4 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository;
+package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO;
 
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiDao;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiEntity;
@@ -14,13 +14,16 @@ public class BonsaiController {
 
     private final BonsaiDao bonsaiDao;
 
+
     public BonsaiController(BonsaiDao bonsaiDao){
         this.bonsaiDao=bonsaiDao;
+
     }
 
 
     @GetMapping
     public List<BonsaiEntity> FindAllBonsai(){
+
         return bonsaiDao.findAll();
     }
 
@@ -30,6 +33,7 @@ public class BonsaiController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
     @PostMapping
     public BonsaiEntity create(@RequestBody BonsaiEntity bonsai){
         return bonsaiDao.save(bonsai);
