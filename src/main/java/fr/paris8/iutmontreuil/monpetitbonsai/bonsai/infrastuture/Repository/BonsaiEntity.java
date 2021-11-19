@@ -1,4 +1,4 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.bonsai;
+package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture;
 
 
 import org.hibernate.annotations.GenericGenerator;
@@ -7,14 +7,14 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity(name= "Bonsai")
-@Table(name ="Bonsai")
+@Table(name ="bonsai")
 public class BonsaiEntity {
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name="uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name="id")
-    private String id;
+    private UUID id;
 
     @Column(name="name")
     private String name;
@@ -23,11 +23,11 @@ public class BonsaiEntity {
 
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
