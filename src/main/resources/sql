@@ -1,0 +1,13 @@
+CREATE TABLE Bonsai(
+
+id PRIMARY KEY,
+nom VARCHAR(100),
+species VARCHAR(100),
+acquisition_date DATE,
+acquisition_age INT,
+last_watering DATE,
+last_repotting DATE,
+last_pruning DATE,
+status VARCHAR(100)
+
+);
