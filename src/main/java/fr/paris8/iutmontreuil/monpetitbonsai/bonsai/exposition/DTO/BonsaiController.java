@@ -1,47 +1,93 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO;
 
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiDao;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.Bonsai;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.BonsaiService;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiEntity;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
+import static fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiMapper.EntityToBonsai;
+import static fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiMapper.bonsaiToDto;
 
 @RestController
 @RequestMapping("/bonsais")
 public class BonsaiController {
 
-    private final BonsaiDao bonsaiDao;
+
+    private BonsaiService bonsaiService;
 
 
-    public BonsaiController(BonsaiDao bonsaiDao){
-        this.bonsaiDao=bonsaiDao;
 
+    public BonsaiController(BonsaiService bonsaiService) {
+        this.bonsaiService = bonsaiService;
     }
 
 
     @GetMapping
-    public List<BonsaiEntity> FindAllBonsai(){
-
-        return bonsaiDao.findAll();
+    public List<BonsaiDTO> findAll() {
+        return bonsaiService.findAll().stream()
+                .map(BonsaiMapper::bonsaiToDto)
+                .collect(Collectors.toList());
     }
 
+
+
+
     @GetMapping("/{uuid}")
-    public ResponseEntity<BonsaiEntity> findById(@PathVariable("uuid") UUID uuid){
-        return bonsaiDao.findById(uuid)
+    public ResponseEntity<BonsaiDTO> findById(@PathVariable("uuid") UUID uuid){
+        return bonsaiService.findById(uuid)
+                .map(BonsaiMapper::bonsaiToDto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
+
+
+
     @PostMapping
-    public BonsaiEntity create(@RequestBody BonsaiEntity bonsai){
-        return bonsaiDao.save(bonsai);
+    public BonsaiDTO create(@RequestBody Bonsai bonsai) {
+        Bonsai bonsai1= EntityToBonsai(bonsai);
+        Bonsai postCreated = bonsaiService.create(bonsai1);
+        return bonsaiToDto(postCreated);
     }
 
 
 
+
+
+    @PutMapping
+    public void updateStatuts(@RequestBody Bonsai bonsai) {
+        Bonsai bonsai1= EntityToBonsai(bonsai);
+        bonsaiService.update(bonsai1);
+    }
+
+
+
+
+    @DeleteMapping("/{uuid}")
+    public ResponseEntity<BonsaiDTO> delete(@PathVariable("uuid") UUID uuid){
+        bonsaiService.deleteById(uuid);
+        return ResponseEntity.ok().build();
+
+    }
+
+
+
+
+    @PatchMapping("/{uuid}")
+    public ResponseEntity<BonsaiDTO> update(@RequestBody BonsaiDTO bonsai, @PathVariable("uuid") UUID uuid){
+            return bonsaiService.findById(uuid)
+                    .map(BonsaiMapper::bonsaiToDto)
+                    .map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.notFound().build());
+        }
+
+
+
+
 }
-
-
-

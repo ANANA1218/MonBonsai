@@ -1,19 +1,18 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository;
 
-import org.springframework.http.ResponseEntity;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.Bonsai;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
-public class BonsaiRepository{
+public class BonsaiRepository {
 
-    private final BonsaiDao bonsaiDao;
+    private static BonsaiDao bonsaiDao;
 
 
 
@@ -22,25 +21,64 @@ public class BonsaiRepository{
     }
 
 
-    @GetMapping
-    public List<BonsaiEntity> FindAllBonsai(){
 
-        return bonsaiDao.findAll();
+    public Optional<Bonsai> findById(UUID id) {
+        return bonsaiDao.findById(id.toString())
+                .map(BonsaiMapper::EntityToBonsai);
     }
 
-    @GetMapping("/{uuid}")
-    public ResponseEntity<BonsaiEntity> findById(@PathVariable("uuid") UUID uuid){
-        return bonsaiDao.findById(uuid)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-    @PostMapping
-    public BonsaiEntity create(@RequestBody BonsaiEntity bonsai){
-        return bonsaiDao.save(bonsai);
+
+
+    public List<Bonsai> findAll() {
+        return bonsaiDao.findAll().stream()
+                .map(BonsaiMapper::EntityToBonsai)
+                .collect(Collectors.toList());
     }
 
 
 
 
 
-        }
+    public Bonsai create(Bonsai bonsai) {
+
+
+        BonsaiEntity bonsaiToSave = BonsaiMapper.BonsaiToEntity(bonsai);
+        BonsaiEntity save = bonsaiDao.save(bonsaiToSave);
+        return BonsaiMapper.EntityToBonsai(save);
+    }
+
+
+    public Bonsai updateStatuts(BonsaiEntity bonsai) {
+
+        BonsaiEntity save = bonsaiDao.save(bonsai);
+        return BonsaiMapper.EntityToBonsai(save);
+
+    }
+
+
+
+    public void deleteById(UUID id) {
+        bonsaiDao.deleteById(id.toString());
+    }
+
+
+    public Bonsai update(Bonsai bonsai) {
+
+        BonsaiEntity bonsaiToSave = BonsaiMapper.BonsaiToEntity(bonsai);
+        BonsaiEntity save = bonsaiDao.save(bonsaiToSave);
+        return BonsaiMapper.EntityToBonsai(save);
+    }
+
+
+
+
+
+
+
+
+
+
+
+}
+
+

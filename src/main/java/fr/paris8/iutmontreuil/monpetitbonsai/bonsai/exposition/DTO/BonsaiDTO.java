@@ -11,21 +11,21 @@ public class BonsaiDTO {
     public String species;
     public Date acquisition_Date;
     public int acquisition_Age;
-    public Date last_watering;
-    public Date last_repotting;
-    public Date last_pruning;
+
     public String status;
 
-    public BonsaiDTO(String id, String name, String species, Date acsuistion_Date, int acquisition_Age, Date last_watering, Date last_repotting, Date last_pruning, String status) {
+    public BonsaiDTO(String id, String name, String species, Date acsuistion_Date, int acquisition_Age, String status) {
         this.id = id;
         this.name = name;
         this.species = species;
         this.acquisition_Date = acsuistion_Date;
         this.acquisition_Age = acquisition_Age;
-        this.last_watering = last_watering;
-        this.last_repotting = last_repotting;
-        this.last_pruning = last_pruning;
+
         this.status = status;
+    }
+
+    public BonsaiDTO() {
+
     }
 
 
@@ -69,29 +69,7 @@ public class BonsaiDTO {
         this.acquisition_Age = acquisition_Age;
     }
 
-    public Date getLast_watering() {
-        return last_watering;
-    }
 
-    public void setLast_watering(Date last_watering) {
-        this.last_watering = last_watering;
-    }
-
-    public Date getLast_repotting() {
-        return last_repotting;
-    }
-
-    public void setLast_repotting(Date last_repotting) {
-        this.last_repotting = last_repotting;
-    }
-
-    public Date getLast_pruning() {
-        return last_pruning;
-    }
-
-    public void setLast_pruning(Date last_pruning) {
-        this.last_pruning = last_pruning;
-    }
 
     public String getStatus() {
         return status;
@@ -103,4 +81,3 @@ public class BonsaiDTO {
 
 
 }
-

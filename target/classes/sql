@@ -1,13 +1,68 @@
 CREATE TABLE Bonsai(
 
-id PRIMARY KEY,
+id PRIMARY KEY not null,
 nom VARCHAR(100),
 species VARCHAR(100),
 acquisition_date DATE,
 acquisition_age INT,
-last_watering DATE,
-last_repotting DATE,
-last_pruning DATE,
 status VARCHAR(100)
-
+foreign key (owner_id) references Bonsai.owner(id)
 );
+
+CREATE TABLE owner(
+id UUID PRIMARY KEY not null,
+name VARCHAR(100) not null
+);
+
+
+ALTER TABLE Bonsai
+ALTER COLUMN id TYPE type UUID;
+
+ALTER TABLE Bonsai
+ADD [CONSTRAINT owner_id]
+    FOREIGN KEY
+    REFERENCES Bonsai(col_ref);
+
+
+
+CREATE TABLE last_watering (
+id varchar PRIMARY KEY not null,
+dateTime timestamp not null,
+bonsai_id varchar not null,
+foreign key (bonsai_id) references Bonsai.bonsai(id)
+);
+
+
+CREATE TABLE last_repotting(
+id varchar PRIMARY KEY not null,
+dateTime timestamp not null,
+bonsai_id varchar not null,
+foreign key (bonsai_id) references Bonsai.bonsai(id)
+);
+
+
+CREATE TABLE last_pruning(
+id varchar PRIMARY KEY not null,
+dateTime timestamp not null,
+bonsai_id varchar not null,
+foreign key (bonsai_id) references Bonsai.bonsai(id)
+);
+
+
+
+
+
+
+
+INSERT into bonsai(id, name, species, acquisition_date, acquisition_age, status) values ('ea008f3d-2c6b-4d54-bd4b-f8773c346ab7', 'Nana', 'bonsai', '29/11/2020', 1, 'alive');
+INSERT into bonsai(id, name, species, acquisition_date, acquisition_age, status) values ('ef862fec-f589-40f9-840b-a6c6a8e34bc8', 'toto', 'bonsai', '29/11/2020', 1,'dead');
+INSERT into bonsai(id, name, species, acquisition_date, acquisition_age, status) values ('ea008f3d-2c6b-4d54-bd4b-f8773c346ab2', 'Nana', 'bonsai', '29/11/2020', 3, 'alive');
+
+INSERT into last_repotting(id, dateTime,bonsai_id) values ('','','ef862fec-f589-40f9-840b-a6c6a8e34bc8' );
+INSERT into last_repotting(id, dateTime,bonsai_id) values ('', '','ef862fec-f589-40f9-840b-a6c6a8e34bc8';
+
+INSERT into last_pruning(id, dateTime,bonsai_id) values ('','','ea008f3d-2c6b-4d54-bd4b-f8773c346ab7' );
+INSERT into last_pruning(id, dateTime,bonsai_id) values ('','','ea008f3d-2c6b-4d54-bd4b-f8773c346ab7');
+
+INSERT into last_watering (id, dateTime,bonsai_id) values ('','','ea008f3d-2c6b-4d54-bd4b-f8773c346ab7' );
+INSERT into last_watering (id, dateTime,bonsai_id) values ('','','ea008f3d-2c6b-4d54-bd4b-f8773c346ab7' ;
