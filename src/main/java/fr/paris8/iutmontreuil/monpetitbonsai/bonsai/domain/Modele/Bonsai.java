@@ -22,6 +22,7 @@ public class Bonsai {
         this.acquisition_Age = acquisition_Age;
 
         this.status = status;
+
     }
 
     public Bonsai() {

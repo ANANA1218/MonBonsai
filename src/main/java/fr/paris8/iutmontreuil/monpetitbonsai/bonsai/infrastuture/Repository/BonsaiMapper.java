@@ -31,6 +31,7 @@ public class BonsaiMapper {
         return bonsaiConvert;
     }
 
+
     public static BonsaiDTO bonsaiToDto (Bonsai bonsai){
         BonsaiDTO bonsaiConvert = new BonsaiDTO();
         bonsaiConvert.setId(bonsai.getId());

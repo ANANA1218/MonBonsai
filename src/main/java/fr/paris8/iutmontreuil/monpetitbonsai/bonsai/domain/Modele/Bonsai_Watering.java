@@ -23,6 +23,7 @@ public class Bonsai_Watering {
     @Column(name = "date")
     private Timestamp dateTime;
 
+
     @Column(name = "bonsai_id")
     private String bonsai_id;
 

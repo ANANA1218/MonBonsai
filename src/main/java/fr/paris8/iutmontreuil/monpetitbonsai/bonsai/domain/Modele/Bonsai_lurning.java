@@ -20,6 +20,7 @@ public class Bonsai_lurning{
     private Timestamp dateTime;
 
     @Column(name = "bonsai_id")
+
     private String bonsai_id;
 
     public Bonsai_lurning(String id, Timestamp dateTime, String bonsai_id) {
