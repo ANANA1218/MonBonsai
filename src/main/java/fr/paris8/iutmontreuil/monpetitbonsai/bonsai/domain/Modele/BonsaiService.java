@@ -4,17 +4,14 @@ import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Bons
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import javax.persistence.OneToMany;
+import java.util.*;
 
 @Service
 public class BonsaiService {
 
-
-
+    @OneToMany
     private BonsaiRepository repository;
-
 
     public BonsaiService(BonsaiRepository repository){
         this.repository=repository;
@@ -28,25 +25,30 @@ public class BonsaiService {
     }
 
 
-    public Bonsai update(Bonsai bonsai) {
-        return repository.update(bonsai);
-    }
-
-
-    public Bonsai create(Bonsai bonsai) {
+    public BonsaiEntity create(BonsaiEntity bonsai) {
         return repository.create(bonsai);
     }
 
-    public Bonsai updateStatuts(Bonsai bonsai) {
-        return repository.update(bonsai);
+    public Bonsai updat(Bonsai bonsai, UUID id) {
+        return repository.updat(bonsai, id);
     }
 
+
+    public Bonsai updatStatus(Bonsai bonsai, UUID id) {
+        return repository.updatStatus(bonsai, id);
+    }
 
     public void deleteById(UUID id) {
         repository.deleteById(id);
     }
 
-
-
-
+    public List<Watering> getWatering(UUID uuid) {
+        return repository.getWatering(uuid);
+    }
+    public List<Repotting> getRepotting(UUID uuid) {
+        return repository.getRepotting(uuid);
+    }
+    public List<Pruning> getPruning(UUID uuid) {
+        return repository.getPruning(uuid);
+    }
 }

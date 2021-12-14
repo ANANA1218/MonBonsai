@@ -11,9 +11,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiMapper.EntityToBonsai;
-import static fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiMapper.bonsaiToDto;
-
 @RestController
 @RequestMapping("/bonsais")
 public class BonsaiController {
@@ -22,74 +19,100 @@ public class BonsaiController {
     private BonsaiService bonsaiService;
 
 
-
     public BonsaiController(BonsaiService bonsaiService) {
         this.bonsaiService = bonsaiService;
     }
 
-
+    // OK
     @GetMapping
     public List<BonsaiDTO> findAll() {
-        return bonsaiService.findAll().stream()
-                .map(BonsaiMapper::bonsaiToDto)
+        return bonsaiService.findAll()
+                .stream()
+                .map(BonsaiMapper:: bonsaiToDto)
                 .collect(Collectors.toList());
     }
+//
 
 
-
-
+    // OK
     @GetMapping("/{uuid}")
     public ResponseEntity<BonsaiDTO> findById(@PathVariable("uuid") UUID uuid){
         return bonsaiService.findById(uuid)
-                .map(BonsaiMapper::bonsaiToDto)
+                .map(BonsaiMapper:: bonsaiToDto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
+//
 
 
 
-
-
+    // modifier
     @PostMapping
-    public BonsaiDTO create(@RequestBody Bonsai bonsai) {
-        Bonsai bonsai1= EntityToBonsai(bonsai);
-        Bonsai postCreated = bonsaiService.create(bonsai1);
-        return bonsaiToDto(postCreated);
+
+    public BonsaiEntity create(@RequestBody BonsaiEntity bonsai){
+        return bonsaiService.create(bonsai);
     }
 
+    //
 
 
-
-
-    @PutMapping
-    public void updateStatuts(@RequestBody Bonsai bonsai) {
-        Bonsai bonsai1= EntityToBonsai(bonsai);
-        bonsaiService.update(bonsai1);
-    }
-
-
-
-
-    @DeleteMapping("/{uuid}")
-    public ResponseEntity<BonsaiDTO> delete(@PathVariable("uuid") UUID uuid){
-        bonsaiService.deleteById(uuid);
-        return ResponseEntity.ok().build();
-
-    }
-
-
-
-
+    // modifier
     @PatchMapping("/{uuid}")
-    public ResponseEntity<BonsaiDTO> update(@RequestBody BonsaiDTO bonsai, @PathVariable("uuid") UUID uuid){
-            return bonsaiService.findById(uuid)
-                    .map(BonsaiMapper::bonsaiToDto)
-                    .map(ResponseEntity::ok)
-                    .orElse(ResponseEntity.notFound().build());
-        }
+    public BonsaiService updat(@RequestBody BonsaiEntity bonsai, @PathVariable("uuid") UUID uuid) {
+
+        return bonsaiService;
+    }
+    //
+
+    // modifier
+    @PutMapping("/{uuid}")
+    public BonsaiService updatStatus(@RequestBody BonsaiEntity bonsai, @PathVariable("uuid") UUID uuid) {
+
+        return bonsaiService;
+    }
+    //
 
 
+    // OK
+    @DeleteMapping("/{uuid}")
+    public void deleteById(@PathVariable UUID uuid) {
+        bonsaiService.deleteById(uuid);
+    }
+    //
+
+
+    // OK
+    @GetMapping("/{uuid}/watering")
+    public List<WateringDTO> getWatering(@PathVariable UUID uuid) {
+        return bonsaiService.getWatering(uuid)
+                .stream()
+                .map(BonsaiMapper::wateringToDto)
+                .collect(Collectors.toList());
+    }
+//
+
+    // OK
+    @GetMapping("/{uuid}/repotting")
+    public List<RepottingDTO> getRepotting(@PathVariable UUID uuid) {
+        return bonsaiService.getRepotting(uuid)
+                .stream()
+                .map(BonsaiMapper::RepottingToDto)
+                .collect(Collectors.toList());
+    }
+//
+
+
+    // OK
+    @GetMapping("/{uuid}/pruning")
+    public List<PruningDTO> getPruning(@PathVariable UUID uuid) {
+        return bonsaiService.getPruning(uuid)
+                .stream()
+                .map(BonsaiMapper::PruningtoDto)
+                .collect(Collectors.toList());
+    }
+    //
 
 
 }
+

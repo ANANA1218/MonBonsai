@@ -59,11 +59,3 @@ INSERT into bonsai(id, name, species, acquisition_date, acquisition_age, status)
 INSERT into bonsai(id, name, species, acquisition_date, acquisition_age, status) values ('ef862fec-f589-40f9-840b-a6c6a8e34bc8', 'toto', 'bonsai', '29/11/2020', 1,'dead');
 INSERT into bonsai(id, name, species, acquisition_date, acquisition_age, status) values ('ea008f3d-2c6b-4d54-bd4b-f8773c346ab2', 'Nana', 'bonsai', '29/11/2020', 3, 'alive');
 
-INSERT into last_repotting(id, dateTime,bonsai_id) values ('','','ef862fec-f589-40f9-840b-a6c6a8e34bc8' );
-INSERT into last_repotting(id, dateTime,bonsai_id) values ('', '','ef862fec-f589-40f9-840b-a6c6a8e34bc8';
-
-INSERT into last_pruning(id, dateTime,bonsai_id) values ('','','ea008f3d-2c6b-4d54-bd4b-f8773c346ab7' );
-INSERT into last_pruning(id, dateTime,bonsai_id) values ('','','ea008f3d-2c6b-4d54-bd4b-f8773c346ab7');
-
-INSERT into last_watering (id, dateTime,bonsai_id) values ('','','ea008f3d-2c6b-4d54-bd4b-f8773c346ab7' );
-INSERT into last_watering (id, dateTime,bonsai_id) values ('','','ea008f3d-2c6b-4d54-bd4b-f8773c346ab7' ;
