@@ -1,5 +1,6 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele;
 
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO.BonsaiDTO;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiEntity;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiRepository;
 import org.springframework.stereotype.Service;
@@ -25,18 +26,23 @@ public class BonsaiService {
     }
 
 
-    public BonsaiEntity create(BonsaiEntity bonsai) {
+    public Bonsai create(Bonsai bonsai) {
         return repository.create(bonsai);
     }
 
-    public Bonsai updat(Bonsai bonsai, UUID id) {
-        return repository.updat(bonsai, id);
+    public Optional<Bonsai> update(UUID id, Bonsai updatedBonsai) {
+        Optional<Bonsai> bonsai = repository.findById(id);
+        if (bonsai.isPresent()) {
+            bonsai.get().setName(updatedBonsai.getName());
+            bonsai.get().setSpecies(updatedBonsai.getSpecies());
+            bonsai.get().setAcquisition_date(updatedBonsai.getAcquisition_date());
+            bonsai.get().setAcquisition_age(updatedBonsai.getAcquisition_age());
+        }
+        return bonsai;
     }
 
 
-    public Bonsai updatStatus(Bonsai bonsai, UUID id) {
-        return repository.updatStatus(bonsai, id);
-    }
+
 
     public void deleteById(UUID id) {
         repository.deleteById(id);
@@ -51,4 +57,6 @@ public class BonsaiService {
     public List<Pruning> getPruning(UUID uuid) {
         return repository.getPruning(uuid);
     }
+
+
 }

@@ -52,23 +52,32 @@ public class BonsaiRepository{
 
 
 
-    //a modifier
+    //a voir si c bon
+    public Bonsai create(Bonsai bonsai){
 
-    public BonsaiEntity create(BonsaiEntity bonsai){
-        return bonsaiDao.save(bonsai);
+        BonsaiEntity bonsaiEntity = BonsaiMapper.BonsaiToEntity(bonsai);
+        BonsaiEntity save = bonsaiDao.save(bonsaiEntity);
+
+        return BonsaiMapper.EntityToBonsai(save);
     }
 //
 
     // a modifier
-    public Bonsai updat(Bonsai bonsai, UUID id){
-        return bonsai;
+    public Bonsai update(Bonsai bonsai, UUID id){
+        BonsaiEntity bonsaiEntity = BonsaiMapper.BonsaiToEntity(bonsai);
+        BonsaiEntity save = bonsaiDao.save(bonsaiEntity);
+
+        return BonsaiMapper.EntityToBonsai(save);
     }
 
 //
 
     // a modifier
     public Bonsai updatStatus(Bonsai bonsai, UUID id){
-        return bonsai;
+        BonsaiEntity bonsaiEntity = BonsaiMapper.BonsaiToEntity(bonsai);
+        BonsaiEntity save = bonsaiDao.save(bonsaiEntity);
+
+        return BonsaiMapper.EntityToBonsai(save);
     }
 
 //

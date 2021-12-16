@@ -2,11 +2,12 @@ package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO;
 
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.Bonsai;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.BonsaiService;
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiEntity;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -50,27 +51,29 @@ public class BonsaiController {
     // modifier
     @PostMapping
 
-    public BonsaiEntity create(@RequestBody BonsaiEntity bonsai){
-        return bonsaiService.create(bonsai);
+    public ResponseEntity<BonsaiDTO> create(@RequestBody BonsaiDTO bonsaiDTO) {
+        Bonsai bonsai = bonsaiService.create(BonsaiMapper.DtoToBonsai(bonsaiDTO));
+        bonsaiDTO = BonsaiMapper.bonsaiToDto(bonsai);
+        return ResponseEntity.created(URI.create("/bonsai/")).build();
+        //
+
     }
 
-    //
 
+        // modifier
+        @PatchMapping("/{uuid}")
 
-    // modifier
-    @PatchMapping("/{uuid}")
-    public BonsaiService updat(@RequestBody BonsaiEntity bonsai, @PathVariable("uuid") UUID uuid) {
+        public ResponseEntity<BonsaiDTO> update(@RequestBody BonsaiDTO bonsaiDTO) {
+            Bonsai bonsai = bonsaiService.create(BonsaiMapper.DtoToBonsai(bonsaiDTO));
+            bonsaiDTO = BonsaiMapper.bonsaiToDto(bonsai);
+            return ResponseEntity.ok(BonsaiMapper.bonsaiToDto(bonsai));
 
-        return bonsaiService;
     }
-    //
 
     // modifier
     @PutMapping("/{uuid}")
-    public BonsaiService updatStatus(@RequestBody BonsaiEntity bonsai, @PathVariable("uuid") UUID uuid) {
 
-        return bonsaiService;
-    }
+
     //
 
 
