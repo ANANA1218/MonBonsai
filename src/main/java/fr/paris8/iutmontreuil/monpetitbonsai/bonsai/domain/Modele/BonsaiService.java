@@ -1,7 +1,7 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele;
 
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiRepository;
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner;
+
 import org.springframework.stereotype.Service;
 
 
@@ -39,7 +39,7 @@ public class BonsaiService {
             bonsaiUpdate.get().setSpecies(bonsai.getSpecies());
             bonsaiUpdate.get().setAcquisition_date(bonsai.getAcquisition_date());
             bonsaiUpdate.get().setAcquisition_age(bonsai.getAcquisition_age());
-            return Optional.of(BonsaiRepository.update(bonsaiUpdate.get()));
+            return Optional.of(repository.update(bonsaiUpdate.get()));
         }
         return bonsaiUpdate;
     }
@@ -50,7 +50,7 @@ public class BonsaiService {
 
         if (bonsaiPut.isPresent()) {
             bonsaiPut.get().setStatus(status);
-            return Optional.of(BonsaiRepository.update(bonsaiPut.get()));
+            return Optional.of(repository.statusUpdate(bonsaiPut.get(), id));
         }
         return bonsaiPut;
     }
@@ -64,9 +64,7 @@ public class BonsaiService {
         return repository.getWatering(uuid);
     }
 
-    public List<Owner> getOwner(UUID uuid) {
-        return repository.getOwner(uuid);
-    }
+
 
 
 

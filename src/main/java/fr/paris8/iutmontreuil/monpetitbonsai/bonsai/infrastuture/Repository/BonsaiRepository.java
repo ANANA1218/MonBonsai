@@ -6,9 +6,7 @@ import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.DAO.
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.DAO.RepottingDao;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.DAO.WateringDao;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Entity.BonsaiEntity;
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.DAO.OwnerDao;
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.Mappper.OwnerMapper;
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner;
+
 import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
@@ -20,18 +18,16 @@ import java.util.stream.Collectors;
 @Component
 public class BonsaiRepository{
 
-    private static BonsaiDao bonsaiDao;
+    private  BonsaiDao bonsaiDao;
     private WateringDao wateringDao;
     private RepottingDao repottingDao;
     private PruningDao pruningDao;
-    private OwnerDao ownerDao;
 
-
-    public BonsaiRepository(WateringDao wateringDao, RepottingDao repottingDao, PruningDao pruningDao, OwnerDao ownerDao) {
+    public BonsaiRepository(BonsaiDao bonsaiDao, WateringDao wateringDao, RepottingDao repottingDao, PruningDao pruningDao) {
+        this.bonsaiDao = bonsaiDao;
         this.wateringDao = wateringDao;
         this.repottingDao = repottingDao;
         this.pruningDao = pruningDao;
-        this.ownerDao = ownerDao;
     }
 
     //ok
@@ -62,7 +58,7 @@ public class BonsaiRepository{
 //
 
     // a modifier
-    public static Bonsai update(Bonsai bonsai){
+    public Bonsai update(Bonsai bonsai){
         BonsaiEntity bonsaiEntity = BonsaiMapper.BonsaiToEntity(bonsai);
         BonsaiEntity update = bonsaiDao.save(bonsaiEntity);
 
@@ -122,15 +118,7 @@ public class BonsaiRepository{
                 .collect(Collectors.toList());
     }
 
-    public List<Owner> getOwner(UUID uuid) {
-        return ownerDao.findAll().stream()
-                .filter(owner -> owner.getBonsai().getId().equals(uuid))
-                .map(OwnerMapper::EntityToOwner)
-                .sorted(Comparator.comparing(Owner::getName).reversed())
-                .collect(Collectors.toList());
-    }
 
-//
 
 
 
