@@ -8,6 +8,8 @@ import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO.RepottingDTO;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO.WateringDTO;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiMapper;
 
+import fr.paris8.iutmontreuil.monpetitbonsai.owner.DTO.OwnerDTO;
+import fr.paris8.iutmontreuil.monpetitbonsai.owner.Mappper.OwnerMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -108,7 +110,16 @@ public class BonsaiController {
                 .collect(Collectors.toList());
     }
 //
-
+// OK
+@GetMapping("/{uuid}/repotting")
+public List<OwnerDTO> getOwner(@PathVariable UUID uuid) {
+    return bonsaiService.getOwner(uuid)
+            .stream()
+            .filter(owner-> owner.getBonsai().equals(uuid))
+            .map(OwnerMapper:: OwnertoDto)
+            .collect(Collectors.toList());
+}
+//
 
     // OK
     @GetMapping("/{uuid}/pruning")

@@ -1,6 +1,7 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele;
 
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiRepository;
+import fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner;
 import org.springframework.stereotype.Service;
 
 
@@ -63,7 +64,9 @@ public class BonsaiService {
         return repository.getWatering(uuid);
     }
 
-
+    public List<Owner> getOwner(UUID uuid) {
+        return repository.getOwner(uuid);
+    }
 
 
 

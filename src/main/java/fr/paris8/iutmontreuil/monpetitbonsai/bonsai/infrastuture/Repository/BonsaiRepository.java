@@ -6,6 +6,9 @@ import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.DAO.
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.DAO.RepottingDao;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.DAO.WateringDao;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Entity.BonsaiEntity;
+import fr.paris8.iutmontreuil.monpetitbonsai.owner.DAO.OwnerDao;
+import fr.paris8.iutmontreuil.monpetitbonsai.owner.Mappper.OwnerMapper;
+import fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner;
 import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
@@ -21,15 +24,14 @@ public class BonsaiRepository{
     private WateringDao wateringDao;
     private RepottingDao repottingDao;
     private PruningDao pruningDao;
+    private OwnerDao ownerDao;
 
 
-
-    public BonsaiRepository(BonsaiDao bonsaiDao, WateringDao wateringDao, RepottingDao repottingDao, PruningDao pruningDao) {
-        this.bonsaiDao = bonsaiDao;
+    public BonsaiRepository(WateringDao wateringDao, RepottingDao repottingDao, PruningDao pruningDao, OwnerDao ownerDao) {
         this.wateringDao = wateringDao;
         this.repottingDao = repottingDao;
         this.pruningDao = pruningDao;
-
+        this.ownerDao = ownerDao;
     }
 
     //ok
@@ -117,6 +119,14 @@ public class BonsaiRepository{
                 .filter(pruning -> pruning.getBonsai().getId().equals(id))
                 .map(BonsaiMapper::EntityToPruning)
                 .sorted(Comparator.comparing(Pruning::getPruning_date).reversed())
+                .collect(Collectors.toList());
+    }
+
+    public List<Owner> getOwner(UUID uuid) {
+        return ownerDao.findAll().stream()
+                .filter(owner -> owner.getBonsai().getId().equals(uuid))
+                .map(OwnerMapper::EntityToOwner)
+                .sorted(Comparator.comparing(Owner::getName).reversed())
                 .collect(Collectors.toList());
     }
 

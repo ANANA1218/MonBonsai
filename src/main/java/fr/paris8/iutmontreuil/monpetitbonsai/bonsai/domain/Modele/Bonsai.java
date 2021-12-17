@@ -1,6 +1,8 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele;
 
 
+import fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner;
+
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -12,13 +14,26 @@ public class Bonsai {
     private Date acquisition_date;
     private int acquisition_age;
     private String status;
-    private List<Watering> waterings;
-    private List<Repotting> repottings;
-    private List<Pruning> prunings;
-
+    private List<Watering> watering;
+    private List<Repotting> repotting;
+    private List<Pruning> pruning;
+    private List<fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner> Owner;
 
 
     public Bonsai() {}
+
+    public Bonsai(UUID id, String name, String species, Date acquisition_date, int acquisition_age, String status, List<Watering> watering, List<Repotting> repotting, List<Pruning> pruning, List<fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner> owner) {
+        this.id = id;
+        this.name = name;
+        this.species = species;
+        this.acquisition_date = acquisition_date;
+        this.acquisition_age = acquisition_age;
+        this.status = status;
+        this.watering = watering;
+        this.repotting = repotting;
+        this.pruning = pruning;
+        Owner = owner;
+    }
 
     public UUID getId() {
         return id;
@@ -68,29 +83,35 @@ public class Bonsai {
         this.status = status;
     }
 
-    public List<Watering> getWaterings() {
-        return waterings;
+    public List<Watering> getWatering() {
+        return watering;
     }
 
-    public void setWaterings(List<Watering> waterings) {
-        this.waterings = waterings;
+    public void setWatering(List<Watering> watering) {
+        this.watering = watering;
     }
 
-    public List<Repotting> getRepottings() {
-        return repottings;
+    public List<Repotting> getRepotting() {
+        return repotting;
     }
 
-    public void setRepottings(List<Repotting> repottings) {
-        this.repottings = repottings;
+    public void setRepotting(List<Repotting> repotting) {
+        this.repotting = repotting;
     }
 
-    public List<Pruning> getPrunings() {
-        return prunings;
+    public List<Pruning> getPruning() {
+        return pruning;
     }
 
-    public void setPrunings(List<Pruning> prunings) {
-        this.prunings = prunings;
+    public void setPruning(List<Pruning> pruning) {
+        this.pruning = pruning;
     }
 
+    public List<fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner> getOwner() {
+        return Owner;
+    }
 
+    public void setOwner(List<fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner> owner) {
+        Owner = owner;
+    }
 }
