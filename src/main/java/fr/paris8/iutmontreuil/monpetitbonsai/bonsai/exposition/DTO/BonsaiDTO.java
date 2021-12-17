@@ -52,7 +52,7 @@ public class BonsaiDTO {
     }
 
     public int getAcquisition_age() {
-        return acquisition_age;
+        return this.acquisition_age;
     }
 
     public void setAcquisition_age(int acquisition_age) {

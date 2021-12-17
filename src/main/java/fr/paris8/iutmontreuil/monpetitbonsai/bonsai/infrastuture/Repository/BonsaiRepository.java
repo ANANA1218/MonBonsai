@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Component
 public class BonsaiRepository{
 
-    private BonsaiDao bonsaiDao;
+    private static BonsaiDao bonsaiDao;
     private WateringDao wateringDao;
     private RepottingDao repottingDao;
     private PruningDao pruningDao;
@@ -65,7 +65,7 @@ public class BonsaiRepository{
 //
 
     // a modifier
-    public Bonsai update(Bonsai bonsai, UUID id){
+    public static Bonsai update(Bonsai bonsai){
         BonsaiEntity bonsaiEntity = BonsaiMapper.BonsaiToEntity(bonsai);
         BonsaiEntity update = bonsaiDao.save(bonsaiEntity);
 
@@ -75,11 +75,11 @@ public class BonsaiRepository{
 //
 
     // a modifier
-    public Bonsai updatStatus(Bonsai bonsai, UUID id){
+    public Bonsai statusUpdate(Bonsai bonsai, UUID id){
         BonsaiEntity bonsaiEntity = BonsaiMapper.BonsaiToEntity(bonsai);
-        BonsaiEntity updateStatus = bonsaiDao.save(bonsaiEntity);
+        BonsaiEntity statusUpdate = bonsaiDao.save(bonsaiEntity);
 
-        return BonsaiMapper.EntityToBonsai(updateStatus);
+        return BonsaiMapper.EntityToBonsai(statusUpdate);
     }
 
 //

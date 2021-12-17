@@ -63,23 +63,22 @@ public class BonsaiController {
     }
 
 
-        // modifier
-        @PatchMapping("/{uuid}")
+    @PatchMapping("/{uuid}")
+    public ResponseEntity<BonsaiDTO> update(@PathVariable UUID uuid, @RequestBody BonsaiDTO bonsaiDTO) {
 
-      // public ResponseEntity<BonsaiDTO> update(@RequestBody BonsaiDTO bonsaiDTO) {
+        return bonsaiService.update(uuid, BonsaiMapper.DtoToBonsai(bonsaiDTO))
+                .map(bonsai -> ResponseEntity.ok(BonsaiMapper.bonsaiToDto(bonsai)))
+                .orElse(ResponseEntity.notFound().build());
+    }
 
- //  }
+    @PutMapping("/{uuid}/status")
+   public  ResponseEntity<BonsaiDTO> statusUpdate(@PathVariable UUID uuid, @RequestBody  BonsaiDTO bonsaiDTO){
 
-    // modifier
-    @PutMapping("/{uuid}")
+      return bonsaiService.statusUpdate(uuid, BonsaiMapper.DtoToBonsai(bonsaiDTO))
+              .map(bonsai -> ResponseEntity.ok(BonsaiMapper.bonsaiToDto(bonsai)))
+               .orElse(ResponseEntity.notFound().build());
+    }
 
-
-        //  public ResponseEntity<BonsaiDTO> updateStatus(@RequestBody BonsaiDTO bonsaiDTO) {
-        //      Bonsai bonsai = bonsaiService.update(BonsaiMapper.DtoToBonsai(bonsaiDTO));
-        //     bonsaiDTO = BonsaiMapper.bonsaiToDto(bonsai);
-        //     return ResponseEntity.ok(BonsaiMapper.bonsaiToDto(bonsai));
-
-        //  }
 
 
     // OK

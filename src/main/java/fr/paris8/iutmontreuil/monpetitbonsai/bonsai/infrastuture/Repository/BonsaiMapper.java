@@ -12,45 +12,63 @@ public class BonsaiMapper {
 
 
     public static Bonsai DtoToBonsai (BonsaiDTO bonsaiDTO){
-        Bonsai bonsai = new Bonsai();
-        bonsai.setId(bonsaiDTO.getId());
-        bonsai.setName(bonsaiDTO.getName());
-        bonsai.setSpecies(bonsaiDTO.getSpecies());
-        bonsai.setAcquisition_date(bonsaiDTO.getAcquisition_date());
-        bonsai.setAcquisition_age(bonsaiDTO.getAcquisition_age());
-        bonsai.setStatus(bonsaiDTO.getStatus());
-        return bonsai;
-    }
-    public static BonsaiDTO bonsaiToDto (Bonsai bonsai){
-        BonsaiDTO bonsaiDTO = new BonsaiDTO();
-        bonsaiDTO.setId(bonsai.getId());
-        bonsaiDTO.setName(bonsai.getName());
-        bonsaiDTO.setSpecies(bonsai.getSpecies());
-        bonsaiDTO.setAcquisition_date(bonsai.getAcquisition_date());
-        bonsaiDTO.setAcquisition_age(bonsai.getAcquisition_age());
-        bonsaiDTO.setStatus(bonsai.getStatus());
-        return bonsaiDTO;
-    }
-    public static Bonsai EntityToBonsai(BonsaiEntity bonsaiEntity){
-        Bonsai bonsai = new Bonsai();
-        bonsai.setId(bonsaiEntity.getId());
-        bonsai.setName(bonsaiEntity.getName());
-        bonsai.setSpecies(bonsaiEntity.getSpecies());
-        bonsai.setAcquisition_date(bonsaiEntity.getAcquisition_date());
-        bonsai.setAcquisition_age(bonsaiEntity.getAcquisition_age());
-        bonsai.setStatus(bonsaiEntity.getStatus());
-        return bonsai;
-    }
-    public static BonsaiEntity BonsaiToEntity (Bonsai bonsai){
-        BonsaiEntity bonsaiEntity = new BonsaiEntity();
-        bonsai.setId(bonsai.getId());
-        bonsai.setName(bonsai.getName());
-        bonsai.setSpecies(bonsai.getSpecies());
-        bonsai.setAcquisition_date(bonsai.getAcquisition_date());
-        bonsai.setAcquisition_age(bonsai.getAcquisition_age());
-        bonsai.setStatus(bonsai.getStatus());
+        Bonsai bonsaiConvert = new Bonsai();
+        bonsaiConvert.setId(bonsaiDTO.getId());
+        bonsaiConvert.setName(bonsaiDTO.getName());
+        bonsaiConvert.setSpecies(bonsaiDTO.getSpecies());
+        bonsaiConvert.setAcquisition_date(bonsaiDTO.getAcquisition_date());
+        bonsaiConvert.setAcquisition_age(bonsaiDTO.getAcquisition_age());
+        bonsaiConvert.setStatus(bonsaiDTO.getStatus());
 
-        return bonsaiEntity;
+        return bonsaiConvert;
+    }
+
+    public static Bonsai EntityToBonsai (BonsaiEntity bonsaiEntity){
+        Bonsai bonsaiConvert = new Bonsai();
+        bonsaiConvert.setId(bonsaiEntity.getId());
+        bonsaiConvert.setName(bonsaiEntity.getName());
+        bonsaiConvert.setSpecies(bonsaiEntity.getSpecies());
+        bonsaiConvert.setAcquisition_date(bonsaiEntity.getAcquisition_date());
+        bonsaiConvert.setAcquisition_age(bonsaiEntity.getAcquisition_age());
+        bonsaiConvert.setStatus(bonsaiEntity.getStatus());
+
+        return bonsaiConvert;
+    }
+
+    public static BonsaiDTO bonsaiToDto (Bonsai bonsai){
+        BonsaiDTO bonsaiConvert = new BonsaiDTO();
+        bonsaiConvert.setId(bonsai.getId());
+        bonsaiConvert.setName(bonsai.getName());
+        bonsaiConvert.setSpecies(bonsai.getSpecies());
+        bonsaiConvert.setAcquisition_date(bonsai.getAcquisition_date());
+        bonsaiConvert.setAcquisition_age(bonsai.getAcquisition_age());
+        bonsaiConvert.setStatus(bonsai.getStatus());
+
+        return bonsaiConvert;
+    }
+
+    public static BonsaiEntity dtoToEntity (BonsaiDTO bonsaiDto){
+        BonsaiEntity bonsaiConvert = new BonsaiEntity();
+        bonsaiConvert.setId(bonsaiDto.getId());
+        bonsaiConvert.setName(bonsaiDto.getName());
+        bonsaiConvert.setSpecies(bonsaiDto.getSpecies());
+        bonsaiConvert.setAcquisition_date(bonsaiDto.getAcquisition_date());
+        bonsaiConvert.setAcquisition_age(bonsaiDto.getAcquisition_age());
+        bonsaiConvert.setStatus(bonsaiDto.getStatus());
+
+        return bonsaiConvert;
+    }
+
+    public static BonsaiEntity BonsaiToEntity (Bonsai bonsai){
+        BonsaiEntity bonsaiConvert = new BonsaiEntity();
+        bonsaiConvert.setId(bonsai.getId());
+        bonsaiConvert.setName(bonsai.getName());
+        bonsaiConvert.setSpecies(bonsai.getSpecies());
+        bonsaiConvert.setAcquisition_date(bonsai.getAcquisition_date());
+        bonsaiConvert.setAcquisition_age(bonsai.getAcquisition_age());
+        bonsaiConvert.setStatus(bonsai.getStatus());
+
+        return bonsaiConvert;
     }
 
     public static Watering EntityToWatering(WateringEntity wateringEntity) {

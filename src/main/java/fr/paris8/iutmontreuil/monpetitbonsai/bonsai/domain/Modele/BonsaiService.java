@@ -29,16 +29,33 @@ public class BonsaiService {
     }
 
 
-  //  public Bonsai update(Bonsai bonsai) {
- //       return repository.update(bonsai);
-//    }
+    public Optional<Bonsai> update(UUID id, Bonsai bonsai) {
 
+        Optional<Bonsai> bonsaiUpdate = repository.findById(id);
 
-    //  public Bonsai updateStatus(Bonsai bonsai) {
-    //       return repository.updateStatus(bonsai);
-//    }
+        if (bonsaiUpdate.isPresent()) {
+            bonsaiUpdate.get().setName(bonsai.getName());
+            bonsaiUpdate.get().setSpecies(bonsai.getSpecies());
+            bonsaiUpdate.get().setAcquisition_date(bonsai.getAcquisition_date());
+            bonsaiUpdate.get().setAcquisition_age(bonsai.getAcquisition_age());
+            return Optional.of(BonsaiRepository.update(bonsaiUpdate.get()));
+        }
+        return bonsaiUpdate;
+    }
 
+    public Optional<Bonsai> statusUpdate(UUID id, Bonsai bonsai) {
 
+        Optional<Bonsai> bonsaiPut = repository.findById(id);
+
+        if (bonsaiPut.isPresent()) {
+            bonsaiPut.get().setName(bonsai.getName());
+            bonsaiPut.get().setSpecies(bonsai.getSpecies());
+            bonsaiPut.get().setAcquisition_date(bonsai.getAcquisition_date());
+            bonsaiPut.get().setAcquisition_age(bonsai.getAcquisition_age());
+            return Optional.of(BonsaiRepository.update(bonsaiPut.get()));
+        }
+        return bonsaiPut;
+    }
 
 
     public void deleteById(UUID id) {
