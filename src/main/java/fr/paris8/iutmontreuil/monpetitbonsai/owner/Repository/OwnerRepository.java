@@ -1,8 +1,6 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.owner.Repository;
 
 
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiMapper;
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Entity.BonsaiEntity;
 import fr.paris8.iutmontreuil.monpetitbonsai.owner.DAO.OwnerDao;
 import fr.paris8.iutmontreuil.monpetitbonsai.owner.Mappper.OwnerMapper;
 import fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner;
@@ -24,7 +22,7 @@ public class OwnerRepository {
 
     //ok
     public Optional<Owner> findById(UUID uuid) {
-        return OwnerDao.findById(uuid)
+        return ownerDao.findById(uuid)
                 .map(OwnerMapper::EntityToOwner);
 
     }
@@ -32,8 +30,8 @@ public class OwnerRepository {
 
     //ok
     public List<Owner> findAll() {
-        return OwnerDao.findAll().stream()
-                .map(OwnerMapper::EntityToOwner);
+        return ownerDao.findAll().stream()
+                .map(OwnerMapper::EntityToOwner)
                 .collect(Collectors.toList());
     }
 
@@ -42,7 +40,7 @@ public class OwnerRepository {
     public Owner create(Owner owner){
 
       OwnerEntity ownerEntity = OwnerMapper.OwnerToEntity(owner);
-        OwnerEntity save = OwnerDao.save(ownerEntity);
+        OwnerEntity save = ownerDao.save(ownerEntity);
 
         return OwnerMapper.EntityToOwner(save);
     }
@@ -51,7 +49,7 @@ public class OwnerRepository {
 //ok
 
     public void deleteById(UUID id) {
-        OwnerDao.deleteById(id);
+        ownerDao.deleteById(id);
     }
 //
 

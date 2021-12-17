@@ -49,11 +49,6 @@ public class BonsaiRepository{
 
 //
 
-
-
-
-
-
     //a voir si c bon
     public Bonsai create(Bonsai bonsai){
 

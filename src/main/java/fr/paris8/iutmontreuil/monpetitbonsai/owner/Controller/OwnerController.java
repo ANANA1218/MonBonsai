@@ -36,7 +36,7 @@ public class OwnerController {
     // OK
     @GetMapping
     public List<OwnerDTO> findAll() {
-        return OwnerService.findAll()
+        return ownerService.findAll()
                 .stream()
                 .map(OwnerMapper:: OwnertoDto)
                 .collect(Collectors.toList());
@@ -46,7 +46,7 @@ public class OwnerController {
     // OK
     @GetMapping("/{uuid}")
     public ResponseEntity<OwnerDTO> findById(@PathVariable("uuid") UUID uuid){
-        return OwnerService.findById(uuid)
+        return ownerService.findById(uuid)
                 .map(OwnerMapper:: OwnertoDto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -61,7 +61,10 @@ public class OwnerController {
 
     }
 
-
+    @DeleteMapping("/{uuid}")
+    public void deleteById(@PathVariable UUID uuid) {
+        ownerService.deleteById(uuid);
+    }
 
 
 
