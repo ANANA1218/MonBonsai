@@ -1,4 +1,4 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository;
+package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -6,19 +6,19 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
-@Entity(name = "pruning")
-@Table(name = "pruning")
-public class PruningEntity {
+@Entity(name = "repotting")
+@Table(name = "repotting")
+public class RepottingEntity {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
-    @Column(name = "pruning_date")
-    private Date pruning_date;
+    @Column(name = "repotting_date")
+    private Date repotting_date;
     @ManyToOne(targetEntity = BonsaiEntity.class) @JoinColumn(name = "bonsai_id")
     private BonsaiEntity bonsai;
 
-    public PruningEntity() {
+    public RepottingEntity() {
     }
 
 
@@ -30,12 +30,12 @@ public class PruningEntity {
         this.id = id;
     }
 
-    public Date getPruning_date() {
-        return pruning_date;
+    public Date getRepotting_date() {
+        return repotting_date;
     }
 
-    public void setPruning_date(Date pruning_date) {
-        this.pruning_date = pruning_date;
+    public void setRepotting_date(Date repotting_date) {
+        this.repotting_date = repotting_date;
     }
 
     public BonsaiEntity getBonsai() {

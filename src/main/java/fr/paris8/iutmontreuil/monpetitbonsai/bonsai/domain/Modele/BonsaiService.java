@@ -1,7 +1,5 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele;
 
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO.BonsaiDTO;
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiEntity;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiRepository;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,11 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO;
+package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO.Controller;
 
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.Bonsai;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.BonsaiService;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO.BonsaiDTO;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO.PruningDTO;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO.RepottingDTO;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO.WateringDTO;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiMapper;
 
 import org.springframework.http.ResponseEntity;

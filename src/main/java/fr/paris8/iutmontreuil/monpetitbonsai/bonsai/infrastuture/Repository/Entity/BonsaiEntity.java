@@ -1,4 +1,4 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository;
+package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Entity;
 
 
 import org.hibernate.annotations.GenericGenerator;
