@@ -39,6 +39,7 @@ public class BonsaiController {
 //
 
 
+
     // OK
     @GetMapping("/{uuid}")
     public ResponseEntity<BonsaiDTO> findById(@PathVariable("uuid") UUID uuid){

@@ -20,6 +20,7 @@ public class OwnerRepository {
     }
 
 
+
     //ok
     public Optional<Owner> findById(UUID uuid) {
         return ownerDao.findById(uuid)

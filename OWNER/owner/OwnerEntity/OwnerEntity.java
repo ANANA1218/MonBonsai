@@ -22,6 +22,7 @@ public class OwnerEntity {
 
 
 
+
     public UUID getId() {
         return id;
     }

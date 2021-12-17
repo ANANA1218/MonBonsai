@@ -18,6 +18,7 @@ public class OwnerMapper {
 
 
 
+
     public static Owner DtoToOwner (OwnerDTO ownerDTO){
         Owner ownerdto = new Owner();
         ownerdto.setId(ownerDTO.getId());

@@ -87,6 +87,7 @@ public class BonsaiRepository{
 
 
 
+
     //ok
     public List<Watering> getWatering(UUID id) {
         return wateringDao.findAll().stream()

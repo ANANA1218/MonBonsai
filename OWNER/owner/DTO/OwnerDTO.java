@@ -14,6 +14,7 @@ public class OwnerDTO {
     public OwnerDTO() {
     }
 
+
     public UUID getId() {
         return id;
     }

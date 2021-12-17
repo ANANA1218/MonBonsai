@@ -33,6 +33,7 @@ public class BonsaiMapper {
         bonsaiConvert.setStatus(bonsaiEntity.getStatus());
 
         return bonsaiConvert;
+
     }
 
     public static BonsaiDTO bonsaiToDto (Bonsai bonsai){
