@@ -21,7 +21,7 @@ public class BonsaiRepository{
     private WateringDao wateringDao;
     private RepottingDao repottingDao;
     private PruningDao pruningDao;
-     fr.paris8.iutmontreuil.monpetitbonsai.owner.DAO.OwnerDao OwnerDao;
+
 
 
     public BonsaiRepository(BonsaiDao bonsaiDao, WateringDao wateringDao, RepottingDao repottingDao, PruningDao pruningDao) {
@@ -97,6 +97,7 @@ public class BonsaiRepository{
     //ok
     public List<Watering> getWatering(UUID id) {
         return wateringDao.findAll().stream()
+                .filter(watering -> watering.getBonsai().getId().equals(id))
                 .map(BonsaiMapper::EntityToWatering)
                 .sorted(Comparator.comparing(Watering::getWatering_date).reversed())
                 .collect(Collectors.toList());
@@ -108,6 +109,7 @@ public class BonsaiRepository{
     //ok
     public List<Repotting> getRepotting(UUID id) {
         return repottingDao.findAll().stream()
+                .filter(repotting -> repotting.getBonsai().getId().equals(id))
                 .map(BonsaiMapper::EntityToRepotting)
                 .sorted(Comparator.comparing(Repotting::getRepotting_date).reversed())
                 .collect(Collectors.toList());
@@ -117,6 +119,7 @@ public class BonsaiRepository{
     //ok
     public List<Pruning> getPruning(UUID id) {
         return pruningDao.findAll().stream()
+                .filter(pruning -> pruning.getBonsai().getId().equals(id))
                 .map(BonsaiMapper::EntityToPruning)
                 .sorted(Comparator.comparing(Pruning::getPruning_date).reversed())
                 .collect(Collectors.toList());

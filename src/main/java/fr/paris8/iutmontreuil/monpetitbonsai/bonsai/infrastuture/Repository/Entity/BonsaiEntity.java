@@ -25,12 +25,7 @@ public class BonsaiEntity {
     private int acquisition_age;
     @Column(name = "status")
     private String status;
-    @OneToMany(targetEntity = WateringEntity.class, mappedBy = "bonsai")
-    private List<WateringEntity> waterings;
-    @OneToMany(targetEntity = RepottingEntity.class, mappedBy = "bonsai")
-    private List<RepottingEntity> repottings;
-    @OneToMany(targetEntity = PruningEntity.class, mappedBy = "bonsai")
-    private List<PruningEntity> prunings;
+
 
     public BonsaiEntity() {
     }
@@ -84,27 +79,5 @@ public class BonsaiEntity {
         this.status = status;
     }
 
-    public List<WateringEntity> getWaterings() {
-        return waterings;
-    }
 
-    public void setWaterings(List<WateringEntity> waterings) {
-        this.waterings = waterings;
-    }
-
-    public List<RepottingEntity> getRepottings() {
-        return repottings;
-    }
-
-    public void setRepottings(List<RepottingEntity> repottings) {
-        this.repottings = repottings;
-    }
-
-    public List<PruningEntity> getPrunings() {
-        return prunings;
-    }
-
-    public void setPrunings(List<PruningEntity> prunings) {
-        this.prunings = prunings;
-    }
 }

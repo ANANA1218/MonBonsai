@@ -3,13 +3,13 @@ package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiRepository;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.OneToMany;
+
 import java.util.*;
 
 @Service
 public class BonsaiService {
 
-    @OneToMany
+
     private BonsaiRepository repository;
 
     public BonsaiService(BonsaiRepository repository){
@@ -43,15 +43,12 @@ public class BonsaiService {
         return bonsaiUpdate;
     }
 
-    public Optional<Bonsai> statusUpdate(UUID id, Bonsai bonsai) {
+    public Optional<Bonsai> statusUpdate(UUID id, String status) {
 
         Optional<Bonsai> bonsaiPut = repository.findById(id);
 
         if (bonsaiPut.isPresent()) {
-            bonsaiPut.get().setName(bonsai.getName());
-            bonsaiPut.get().setSpecies(bonsai.getSpecies());
-            bonsaiPut.get().setAcquisition_date(bonsai.getAcquisition_date());
-            bonsaiPut.get().setAcquisition_age(bonsai.getAcquisition_age());
+            bonsaiPut.get().setStatus(status);
             return Optional.of(BonsaiRepository.update(bonsaiPut.get()));
         }
         return bonsaiPut;

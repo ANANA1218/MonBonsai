@@ -11,7 +11,6 @@ import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Bons
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -53,8 +52,7 @@ public class BonsaiController {
 
 
     // modifier
-    @PostMapping("/bonsai")
-
+    @PostMapping
     public ResponseEntity<BonsaiDTO> create(@RequestBody BonsaiDTO bonsaiDTO) {
         Bonsai bonsai = bonsaiService.create(BonsaiMapper.DtoToBonsai(bonsaiDTO));
         bonsaiDTO = BonsaiMapper.bonsaiToDto(bonsai);
@@ -72,9 +70,9 @@ public class BonsaiController {
     }
 
     @PutMapping("/{uuid}/status")
-   public  ResponseEntity<BonsaiDTO> statusUpdate(@PathVariable UUID uuid, @RequestBody  BonsaiDTO bonsaiDTO){
+   public  ResponseEntity<BonsaiDTO> statusUpdate(@PathVariable UUID uuid, @RequestBody String status){
 
-      return bonsaiService.statusUpdate(uuid, BonsaiMapper.DtoToBonsai(bonsaiDTO))
+      return bonsaiService.statusUpdate(uuid, status)
               .map(bonsai -> ResponseEntity.ok(BonsaiMapper.bonsaiToDto(bonsai)))
                .orElse(ResponseEntity.notFound().build());
     }
@@ -94,6 +92,7 @@ public class BonsaiController {
     public List<WateringDTO> getWatering(@PathVariable UUID uuid) {
         return bonsaiService.getWatering(uuid)
                 .stream()
+                .filter(watering -> watering.getBonsai().getId().equals(uuid))
                 .map(BonsaiMapper::wateringToDto)
                 .collect(Collectors.toList());
     }
@@ -104,6 +103,7 @@ public class BonsaiController {
     public List<RepottingDTO> getRepotting(@PathVariable UUID uuid) {
         return bonsaiService.getRepotting(uuid)
                 .stream()
+                .filter(repotting-> repotting.getBonsai().getId().equals(uuid))
                 .map(BonsaiMapper::RepottingToDto)
                 .collect(Collectors.toList());
     }
@@ -115,6 +115,7 @@ public class BonsaiController {
     public List<PruningDTO> getPruning(@PathVariable UUID uuid) {
         return bonsaiService.getPruning(uuid)
                 .stream()
+                .filter(pruning -> pruning.getBonsai().getId().equals(uuid))
                 .map(BonsaiMapper::PruningtoDto)
                 .collect(Collectors.toList());
     }
