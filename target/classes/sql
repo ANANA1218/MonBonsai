@@ -18,12 +18,6 @@ name VARCHAR(100) not null
 ALTER TABLE Bonsai
 ALTER COLUMN id TYPE type UUID;
 
-ALTER TABLE Bonsai
-ADD [CONSTRAINT owner_id]
-    FOREIGN KEY
-    REFERENCES Bonsai(col_ref);
-
-
 
 CREATE TABLE watering (
 id varchar PRIMARY KEY not null,

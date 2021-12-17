@@ -1,11 +1,7 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository;
 
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.Bonsai;
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.Pruning;
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.Repotting;
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.Watering;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.*;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.Comparator;
 import java.util.List;
@@ -20,6 +16,7 @@ public class BonsaiRepository{
     private WateringDao wateringDao;
     private RepottingDao repottingDao;
     private PruningDao pruningDao;
+     fr.paris8.iutmontreuil.monpetitbonsai.owner.DAO.OwnerDao OwnerDao;
 
 
     public BonsaiRepository(BonsaiDao bonsaiDao, WateringDao wateringDao, RepottingDao repottingDao, PruningDao pruningDao) {
@@ -27,8 +24,8 @@ public class BonsaiRepository{
         this.wateringDao = wateringDao;
         this.repottingDao = repottingDao;
         this.pruningDao = pruningDao;
-    }
 
+    }
 
     //ok
     public Optional<Bonsai> findById(UUID uuid) {
@@ -65,9 +62,9 @@ public class BonsaiRepository{
     // a modifier
     public Bonsai update(Bonsai bonsai, UUID id){
         BonsaiEntity bonsaiEntity = BonsaiMapper.BonsaiToEntity(bonsai);
-        BonsaiEntity save = bonsaiDao.save(bonsaiEntity);
+        BonsaiEntity update = bonsaiDao.save(bonsaiEntity);
 
-        return BonsaiMapper.EntityToBonsai(save);
+        return BonsaiMapper.EntityToBonsai(update);
     }
 
 //
@@ -75,9 +72,9 @@ public class BonsaiRepository{
     // a modifier
     public Bonsai updatStatus(Bonsai bonsai, UUID id){
         BonsaiEntity bonsaiEntity = BonsaiMapper.BonsaiToEntity(bonsai);
-        BonsaiEntity save = bonsaiDao.save(bonsaiEntity);
+        BonsaiEntity updateStatus = bonsaiDao.save(bonsaiEntity);
 
-        return BonsaiMapper.EntityToBonsai(save);
+        return BonsaiMapper.EntityToBonsai(updateStatus);
     }
 
 //
@@ -100,6 +97,8 @@ public class BonsaiRepository{
                 .collect(Collectors.toList());
     }
 //
+
+
 
     //ok
     public List<Repotting> getRepotting(UUID id) {

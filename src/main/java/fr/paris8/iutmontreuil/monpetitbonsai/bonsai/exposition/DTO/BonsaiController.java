@@ -3,7 +3,7 @@ package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.Bonsai;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.BonsaiService;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiMapper;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/bonsais")
+@RequestMapping("/bonsai")
 public class BonsaiController {
 
 
@@ -49,13 +49,12 @@ public class BonsaiController {
 
 
     // modifier
-    @PostMapping
+    @PostMapping("/bonsai")
 
     public ResponseEntity<BonsaiDTO> create(@RequestBody BonsaiDTO bonsaiDTO) {
         Bonsai bonsai = bonsaiService.create(BonsaiMapper.DtoToBonsai(bonsaiDTO));
         bonsaiDTO = BonsaiMapper.bonsaiToDto(bonsai);
-        return ResponseEntity.created(URI.create("/bonsai/")).build();
-        //
+        return ResponseEntity.ok(bonsaiDTO);
 
     }
 
@@ -63,18 +62,20 @@ public class BonsaiController {
         // modifier
         @PatchMapping("/{uuid}")
 
-        public ResponseEntity<BonsaiDTO> update(@RequestBody BonsaiDTO bonsaiDTO) {
-            Bonsai bonsai = bonsaiService.create(BonsaiMapper.DtoToBonsai(bonsaiDTO));
-            bonsaiDTO = BonsaiMapper.bonsaiToDto(bonsai);
-            return ResponseEntity.ok(BonsaiMapper.bonsaiToDto(bonsai));
+      // public ResponseEntity<BonsaiDTO> update(@RequestBody BonsaiDTO bonsaiDTO) {
 
-    }
+ //  }
 
     // modifier
     @PutMapping("/{uuid}")
 
 
-    //
+        //  public ResponseEntity<BonsaiDTO> updateStatus(@RequestBody BonsaiDTO bonsaiDTO) {
+        //      Bonsai bonsai = bonsaiService.update(BonsaiMapper.DtoToBonsai(bonsaiDTO));
+        //     bonsaiDTO = BonsaiMapper.bonsaiToDto(bonsai);
+        //     return ResponseEntity.ok(BonsaiMapper.bonsaiToDto(bonsai));
+
+        //  }
 
 
     // OK

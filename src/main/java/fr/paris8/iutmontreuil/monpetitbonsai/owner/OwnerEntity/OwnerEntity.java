@@ -1,8 +1,10 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository;
+package fr.paris8.iutmontreuil.monpetitbonsai.owner.OwnerEntity;
 
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiEntity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity(name = "owner")
@@ -16,6 +18,10 @@ public class OwnerEntity {
     private UUID id;
     @Column(name = "name")
     private String name;
+    @ManyToOne(targetEntity = BonsaiEntity.class) @JoinColumn(name = "bonsai_id")
+    private BonsaiEntity bonsai;
+
+
 
     public UUID getId() {
         return id;
@@ -31,5 +37,14 @@ public class OwnerEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    public BonsaiEntity getBonsai() {
+        return bonsai;
+    }
+
+    public void setBonsai(BonsaiEntity bonsai) {
+        this.bonsai = bonsai;
     }
 }

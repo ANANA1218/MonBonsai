@@ -2,7 +2,7 @@ package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO;
 
 
 import java.util.Date;
-import java.util.List;
+
 import java.util.UUID;
 
 public class BonsaiDTO {
@@ -11,9 +11,7 @@ public class BonsaiDTO {
     private String species;
     private Date acquisition_date;
     private int acquisition_age;
-    private Date last_watering;
-    private Date last_repotting;
-    private Date last_pruning;
+
     private String Status;
 
 
@@ -59,30 +57,6 @@ public class BonsaiDTO {
 
     public void setAcquisition_age(int acquisition_age) {
         this.acquisition_age = acquisition_age;
-    }
-
-    public Date getLast_watering() {
-        return last_watering;
-    }
-
-    public void setLast_watering(Date last_watering) {
-        this.last_watering = last_watering;
-    }
-
-    public Date getLast_repotting() {
-        return last_repotting;
-    }
-
-    public void setLast_repotting(Date last_repotting) {
-        this.last_repotting = last_repotting;
-    }
-
-    public Date getLast_pruning() {
-        return last_pruning;
-    }
-
-    public void setLast_pruning(Date last_pruning) {
-        this.last_pruning = last_pruning;
     }
 
     public String getStatus() {

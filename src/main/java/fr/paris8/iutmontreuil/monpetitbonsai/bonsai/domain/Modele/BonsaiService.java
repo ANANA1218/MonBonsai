@@ -30,16 +30,15 @@ public class BonsaiService {
         return repository.create(bonsai);
     }
 
-    public Optional<Bonsai> update(UUID id, Bonsai updatedBonsai) {
-        Optional<Bonsai> bonsai = repository.findById(id);
-        if (bonsai.isPresent()) {
-            bonsai.get().setName(updatedBonsai.getName());
-            bonsai.get().setSpecies(updatedBonsai.getSpecies());
-            bonsai.get().setAcquisition_date(updatedBonsai.getAcquisition_date());
-            bonsai.get().setAcquisition_age(updatedBonsai.getAcquisition_age());
-        }
-        return bonsai;
-    }
+
+  //  public Bonsai update(Bonsai bonsai) {
+ //       return repository.update(bonsai);
+//    }
+
+
+    //  public Bonsai updateStatus(Bonsai bonsai) {
+    //       return repository.updateStatus(bonsai);
+//    }
 
 
 
@@ -51,6 +50,11 @@ public class BonsaiService {
     public List<Watering> getWatering(UUID uuid) {
         return repository.getWatering(uuid);
     }
+
+
+
+
+
     public List<Repotting> getRepotting(UUID uuid) {
         return repository.getRepotting(uuid);
     }
