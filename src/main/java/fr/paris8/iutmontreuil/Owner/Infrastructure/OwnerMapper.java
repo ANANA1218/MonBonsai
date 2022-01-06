@@ -1,20 +1,18 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.owner.Mappper;
+package fr.paris8.iutmontreuil.Owner.Infrastructure;
 
-
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.DTO.OwnerDTO;
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner;
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.OwnerEntity.OwnerEntity;
-
+import fr.paris8.iutmontreuil.Owner.Domaine.Modele.Owner;
+import fr.paris8.iutmontreuil.Owner.Exposition.DTO.OwnerDTO;
+import fr.paris8.iutmontreuil.Owner.Infrastructure.Repository.Entity.OwnerEntity;
 
 public class OwnerMapper {
 
 
-        public static OwnerDTO OwnertoDto(Owner owner) {
-            OwnerDTO ownerDTO = new OwnerDTO();
-            ownerDTO .setId(owner.getId());
-            ownerDTO .setName(owner.getName());
-            return ownerDTO ;
-        }
+    public static OwnerDTO OwnertoDto(Owner owner) {
+        OwnerDTO ownerDTO = new OwnerDTO();
+        ownerDTO .setId(owner.getId());
+        ownerDTO .setName(owner.getName());
+        return ownerDTO ;
+    }
 
 
 

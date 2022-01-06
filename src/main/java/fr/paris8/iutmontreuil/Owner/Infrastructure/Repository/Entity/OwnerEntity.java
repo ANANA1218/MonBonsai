@@ -1,4 +1,4 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.owner.OwnerEntity;
+package fr.paris8.iutmontreuil.Owner.Infrastructure.Repository.Entity;
 
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Entity.BonsaiEntity;
 import org.hibernate.annotations.GenericGenerator;

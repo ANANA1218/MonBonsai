@@ -1,11 +1,10 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.owner.Controller;
+package fr.paris8.iutmontreuil.Owner.Exposition.DTO.Controller;
 
 
-
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.DTO.OwnerDTO;
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.Mappper.OwnerMapper;
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner;
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.Service.OwnerService;
+import fr.paris8.iutmontreuil.Owner.Domaine.Modele.Owner;
+import fr.paris8.iutmontreuil.Owner.Domaine.Modele.OwnerService;
+import fr.paris8.iutmontreuil.Owner.Exposition.DTO.OwnerDTO;
+import fr.paris8.iutmontreuil.Owner.Infrastructure.OwnerMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

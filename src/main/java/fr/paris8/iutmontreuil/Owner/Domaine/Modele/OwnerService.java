@@ -1,7 +1,6 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.owner.Service;
+package fr.paris8.iutmontreuil.Owner.Domaine.Modele;
 
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner;
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.Repository.OwnerRepository;
+import fr.paris8.iutmontreuil.Owner.Infrastructure.OwnerRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,4 +44,3 @@ public class OwnerService {
 
 
 }
-

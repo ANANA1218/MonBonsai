@@ -1,10 +1,8 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.owner.Repository;
+package fr.paris8.iutmontreuil.Owner.Infrastructure;
 
-
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.DAO.OwnerDao;
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.Mappper.OwnerMapper;
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner;
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.OwnerEntity.OwnerEntity;
+import fr.paris8.iutmontreuil.Owner.Domaine.Modele.Owner;
+import fr.paris8.iutmontreuil.Owner.Infrastructure.Repository.DAO.OwnerDAO;
+import fr.paris8.iutmontreuil.Owner.Infrastructure.Repository.Entity.OwnerEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +12,7 @@ import java.util.stream.Collectors;
 public class OwnerRepository {
 
 
-    private static OwnerDao ownerDao;
+    private static OwnerDAO ownerDao;
 
     public OwnerRepository() {
     }
@@ -40,7 +38,7 @@ public class OwnerRepository {
 
     public Owner create(Owner owner){
 
-      OwnerEntity ownerEntity = OwnerMapper.OwnerToEntity(owner);
+        OwnerEntity ownerEntity = OwnerMapper.OwnerToEntity(owner);
         OwnerEntity save = ownerDao.save(ownerEntity);
 
         return OwnerMapper.EntityToOwner(save);
