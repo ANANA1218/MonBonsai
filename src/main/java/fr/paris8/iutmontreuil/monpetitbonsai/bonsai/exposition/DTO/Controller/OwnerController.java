@@ -1,10 +1,10 @@
-package fr.paris8.iutmontreuil.Owner.Exposition.DTO.Controller;
+package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO.Controller;
 
 
-import fr.paris8.iutmontreuil.Owner.Domaine.Modele.Owner;
-import fr.paris8.iutmontreuil.Owner.Domaine.Modele.OwnerService;
-import fr.paris8.iutmontreuil.Owner.Exposition.DTO.OwnerDTO;
-import fr.paris8.iutmontreuil.Owner.Infrastructure.OwnerMapper;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.Owner;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.OwnerService;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO.OwnerDTO;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.OwnerMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,13 +52,21 @@ public class OwnerController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-
     @PostMapping
     public ResponseEntity<OwnerDTO> create(@RequestBody OwnerDTO ownerDTO) {
         Owner owner = ownerService.create(OwnerMapper.DtoToOwner(ownerDTO));
         ownerDTO = OwnerMapper.OwnertoDto(owner);
         return ResponseEntity.ok(ownerDTO);
 
+    }
+
+    @GetMapping("/{uuid}/bonsai")
+    public ResponseEntity<OwnerDTO> findBonsai(@PathVariable("uuid") UUID uuid){
+
+        return ownerService.findById(uuid)
+                .map(OwnerMapper:: OwnertoDto)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{uuid}")

@@ -1,7 +1,7 @@
-package fr.paris8.iutmontreuil.Owner.Infrastructure.Repository.DAO;
+package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.DAO;
 
 
-import fr.paris8.iutmontreuil.Owner.Infrastructure.Repository.Entity.OwnerEntity;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Entity.OwnerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

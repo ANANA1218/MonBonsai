@@ -1,6 +1,6 @@
-package fr.paris8.iutmontreuil.Owner.Domaine.Modele;
+package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele;
 
-import fr.paris8.iutmontreuil.Owner.Infrastructure.OwnerRepository;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.OwnerRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +35,9 @@ public class OwnerService {
     public Owner create(Owner owner) {
         return orepository.create(owner);
     }
-
+    public Optional<Bonsai> findBonsai(UUID id) {
+        return orepository.findBonsai(id);
+    }
 
     public void deleteById(UUID id) {
         orepository.deleteById(id);

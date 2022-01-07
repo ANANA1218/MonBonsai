@@ -1,8 +1,8 @@
-package fr.paris8.iutmontreuil.Owner.Infrastructure;
+package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository;
 
-import fr.paris8.iutmontreuil.Owner.Domaine.Modele.Owner;
-import fr.paris8.iutmontreuil.Owner.Exposition.DTO.OwnerDTO;
-import fr.paris8.iutmontreuil.Owner.Infrastructure.Repository.Entity.OwnerEntity;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.Owner;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO.OwnerDTO;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Entity.OwnerEntity;
 
 public class OwnerMapper {
 
