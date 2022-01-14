@@ -1,4 +1,4 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele;
+package fr.paris8.iutmontreuil.monpetitbonsai.owner;
 
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.Bonsai;
 

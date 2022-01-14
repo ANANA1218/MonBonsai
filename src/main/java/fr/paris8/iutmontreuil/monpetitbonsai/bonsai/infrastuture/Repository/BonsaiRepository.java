@@ -1,11 +1,11 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository;
 
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.*;
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.DAO.BonsaiDao;
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.DAO.PruningDao;
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.DAO.RepottingDao;
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.DAO.WateringDao;
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Entity.BonsaiEntity;
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.BonsaiDao;
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.PruningDao;
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.RepottingDao;
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.WateringDao;
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.BonsaiEntity;
 
 import org.springframework.stereotype.Component;
 

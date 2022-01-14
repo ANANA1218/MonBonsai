@@ -1,26 +1,25 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Entity;
+package fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure;
 
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Entity.BonsaiEntity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.UUID;
 
-@Entity(name = "owner")
-@Table(name = "owner")
-public class OwnerEntity {
-
+@Entity(name = "pruning")
+@Table(name = "pruning")
+public class PruningEntity {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id")
     private UUID id;
-    @Column(name = "name")
-    private String name;
+    @Column(name = "pruning_date")
+    private Date pruning_date;
     @ManyToOne(targetEntity = BonsaiEntity.class) @JoinColumn(name = "bonsai_id")
     private BonsaiEntity bonsai;
 
-
+    public PruningEntity() {
+    }
 
 
     public UUID getId() {
@@ -31,14 +30,13 @@ public class OwnerEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Date getPruning_date() {
+        return pruning_date;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPruning_date(Date pruning_date) {
+        this.pruning_date = pruning_date;
     }
-
 
     public BonsaiEntity getBonsai() {
         return bonsai;

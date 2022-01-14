@@ -1,6 +1,4 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO;
-
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.Bonsai;
+package fr.paris8.iutmontreuil.monpetitbonsai.owner.DTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +7,7 @@ import java.util.UUID;
 public class OwnerDTO {
     private UUID id;
     private String name;
-    private List<Bonsai> bonsai = new ArrayList<>();
+    private List<BonsaiDTO> bonsai = new ArrayList<>();
 
     public OwnerDTO() {
     }
@@ -31,11 +29,11 @@ public class OwnerDTO {
         this.name = name;
     }
 
-    public List<Bonsai> getBonsai() {
+    public List<BonsaiDTO> getBonsai() {
         return bonsai;
     }
 
-    public void setBonsai(List<Bonsai> bonsais) {
-        this.bonsai = bonsais;
+    public void setBonsai(List<BonsaiDTO> bonsai) {
+        this.bonsai = bonsai;
     }
 }
