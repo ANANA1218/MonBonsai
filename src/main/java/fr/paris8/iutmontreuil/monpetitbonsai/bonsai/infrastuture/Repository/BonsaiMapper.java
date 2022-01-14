@@ -2,10 +2,10 @@ package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository;
 
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.*;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.exposition.DTO.*;
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Entity.BonsaiEntity;
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Entity.PruningEntity;
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Entity.RepottingEntity;
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Entity.WateringEntity;
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.BonsaiEntity;
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.PruningEntity;
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.RepottingEntity;
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.WateringEntity;
 
 
 public class BonsaiMapper {

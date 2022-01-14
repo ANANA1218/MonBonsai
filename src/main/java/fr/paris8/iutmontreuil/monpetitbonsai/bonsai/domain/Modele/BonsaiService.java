@@ -1,6 +1,6 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele;
 
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiRepository;
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.BonsaiRepository;
 
 import org.springframework.stereotype.Service;
 

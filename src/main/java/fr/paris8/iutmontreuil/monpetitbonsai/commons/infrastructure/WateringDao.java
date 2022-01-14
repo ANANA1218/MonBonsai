@@ -1,5 +1,4 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.DAO;
-import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.Entity.WateringEntity;
+package fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
