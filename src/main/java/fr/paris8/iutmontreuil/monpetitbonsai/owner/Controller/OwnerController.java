@@ -63,6 +63,7 @@ public class OwnerController {
 
     }
 
+
     @DeleteMapping("/{uuid}")
     public void deleteById(@PathVariable UUID uuid) {
         ownerService.deleteById(uuid);

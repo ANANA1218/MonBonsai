@@ -56,6 +56,7 @@ public class OwnerRepository {
     }
 
 
+
 //ok
 
     public void deleteById(UUID id) {

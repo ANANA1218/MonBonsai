@@ -8,3 +8,4 @@ import java.util.UUID;
 @Repository
 public interface PruningDao extends JpaRepository<PruningEntity, UUID> {
 }
+

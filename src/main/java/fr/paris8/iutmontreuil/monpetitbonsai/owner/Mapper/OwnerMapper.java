@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 public class OwnerMapper {
 
 
+
     public static OwnerDTO OwnertoDto(Owner owner) {
         OwnerDTO ownerDTO = new OwnerDTO();
         ownerDTO .setId(owner.getId());

@@ -7,3 +7,4 @@ import java.util.UUID;
 @Repository
 public interface WateringDao extends JpaRepository<WateringEntity, UUID> {
 }
+

@@ -1,6 +1,5 @@
-CREATE TABLE Bonsai(
-
-id PRIMARY KEY not null,
+CREATE TABLE Bonsais(
+id int PRIMARY KEY not null,
 nom VARCHAR(100),
 species VARCHAR(100),
 acquisition_date DATE,
@@ -11,8 +10,11 @@ foreign key (owner_id) references Bonsai.owner(id)
 
 CREATE TABLE owner(
 id UUID PRIMARY KEY not null,
-name VARCHAR(100) not null
+name VARCHAR(100) not null,
+bonsais_id varchar not null
+
 );
+
 
 
 ALTER TABLE Bonsai

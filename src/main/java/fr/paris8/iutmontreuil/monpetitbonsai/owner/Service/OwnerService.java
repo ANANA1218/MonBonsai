@@ -27,6 +27,7 @@ public class OwnerService {
 
 
 
+
     public Optional<Owner> findById(UUID id) {
         return orepository.findById(id);
     }
