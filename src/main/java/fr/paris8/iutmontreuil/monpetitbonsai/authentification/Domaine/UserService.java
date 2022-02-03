@@ -24,17 +24,13 @@ public class UserService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
+
     @Transactional
     public UserEntity create(UserCreationRequest userCreationRequest) {
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(userCreationRequest.getUsername());
         userEntity.setPassword(passwordEncoder.encode(userCreationRequest.getPassword()));
         UserEntity savedUser = userDao.save(userEntity);
-
-        List<AuthorityEntity> authorities = new ArrayList<>();
-        authorities.add(new AuthorityEntity(AuthorityId.getDefaultAuthority(savedUser.getId())));
-        savedUser.setAuthorities(authorities);
-
         return userDao.save(savedUser);
     }
 
@@ -47,7 +43,7 @@ public class UserService implements UserDetailsService {
                 AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));
     }
 
-    public List<UserEntity> getAll() {
+    public List<UserEntity> findAll() {
         return userDao.findAll();
     }
 

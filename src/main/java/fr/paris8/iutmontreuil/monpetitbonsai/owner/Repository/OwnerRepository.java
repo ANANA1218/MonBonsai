@@ -59,24 +59,22 @@ public class OwnerRepository {
 
 //ok
 
-    public void deleteById(UUID id) {
-        ownerDao.deleteById(id);
+    public void deleteById(UUID uuid) {
+        ownerDao.deleteById(uuid);
     }
 //
 
-    public List<Bonsai> getBonsai(UUID id) {
+    public List<Bonsai> getBonsai(UUID uuid) {
         return bonsaiDao.findAll()
                 .stream()
-                .filter(bonsai -> bonsai.getOwnerEntity().getId().equals(id))
+                .filter(bonsai -> bonsai.getOwnerEntity().getId().equals(uuid))
                 .map(OwnerMapper::EntityToBonsai)
                 .collect(Collectors.toList());
     }
 
 
     public Bonsai transferBonsaiToOwner(Owner new_owner, Bonsai bonsai) {
-
         ownerDao.addNewOwner(new_owner.getId(), bonsai.getId());
-
         return bonsai;
     }
 

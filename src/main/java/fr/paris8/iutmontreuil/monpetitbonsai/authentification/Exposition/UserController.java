@@ -23,10 +23,22 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
-    public ResponseEntity<UserDto> create(@RequestBody UserDto userDto) {
-        return new ResponseEntity<>(UserMapper.toUserDto(userService.create(UserMapper.toUserCreationRequest(userDto))), HttpStatus.CREATED);
+
+    @GetMapping
+    public List<UserDto> findAll() {
+        return userService.findAll().stream()
+                .map(UserMapper::UsertoDto)
+                .collect(Collectors.toList());
     }
+
+
+
+
+
+
+
+
+
 
     @PutMapping("/me/password")
     public ResponseEntity<UserDto> updatePassword(@RequestBody String newPassword) {
@@ -35,28 +47,22 @@ public class UserController {
             AppUser credentials = (AppUser) authentication.getPrincipal();
             if (credentials != null) {
                 return userService.updatePassword(credentials.getId(), newPassword)
-                        .map(u -> ResponseEntity.ok(UserMapper.toUserDto(u)))
+                        .map(u -> ResponseEntity.ok(UserMapper.UsertoDto(u)))
                         .orElse(ResponseEntity.notFound().build());
             }
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
-    @PutMapping("/{id}/authority")
-    public ResponseEntity<UserDto> updateAuthority(@PathVariable UUID id, @RequestBody String newAuthority) {
+ //   @PutMapping("/{id}/authority")
+   // public ResponseEntity<UserDto> updateAuthority(@PathVariable UUID id, @RequestBody String newAuthority) {
 
-            return userService.updateAuthority(id)
-                    .map(u -> ResponseEntity.ok(UserMapper.toUserDto(u)))
-                    .orElse(ResponseEntity.notFound().build());
+       //     return userService.updateAuthority(id)
+                  //  .map(u -> ResponseEntity.ok(UserMapper.toUserDto(u)))
+                //    .orElse(ResponseEntity.notFound().build());
 
-    }
+//    }
 
-    @GetMapping
-    public List<UserDto> getAll() {
-        return userService.getAll().stream()
-                .map(UserMapper::toUserDto)
-                .collect(Collectors.toList());
-    }
 
     @GetMapping("/me")
     public ResponseEntity<UserDto> getMe() {
@@ -64,7 +70,7 @@ public class UserController {
         if (authentication.getPrincipal() instanceof AppUser) {
             AppUser credentials = (AppUser) authentication.getPrincipal();
             if (credentials != null) {
-                Optional<UserDto> user = userService.getById(credentials.getId()).map(UserMapper::toUserDto);
+                Optional<UserDto> user = userService.getById(credentials.getId()).map(UserMapper::UsertoDto);
                 if (user.isPresent()) {
                     return ResponseEntity.ok(user.get());
                 }

@@ -11,29 +11,29 @@ import java.util.stream.Collectors;
 
 public class UserMapper {
 
-    public static UserCreationRequest toUserCreationRequest(UserDto userDto) {
+    public static UserCreationRequest UserCreationRequesttoEntity(UserDto userDto) {
         UserCreationRequest userCreationRequest = new UserCreationRequest();
         userCreationRequest.setUsername(userDto.getUsername());
         return userCreationRequest;
     }
 
-    public static UserDto toUserDto(UserEntity userEntity) {
+    public static UserDto UsertoDto(UserEntity userEntity) {
         UserDto userDto = new UserDto();
         userDto.setId(userEntity.getId());
         userDto.setUsername(userEntity.getUsername());
         userDto.setEnabled(userEntity.isEnabled());
-        userDto.setAuthorities(userEntity.getAuthorities().stream().map(UserMapper::toAuthorityDto).collect(Collectors.toList()));
+        userDto.setAuthorities(userEntity.getAuthorities().stream().map(UserMapper::AuthoritytoDto).collect(Collectors.toList()));
         return userDto;
     }
 
-    public static AuthorityDto toAuthorityDto(AuthorityEntity authorityEntity) {
+    public static AuthorityDto AuthoritytoDto(AuthorityEntity authorityEntity) {
         AuthorityDto authorityDto = new AuthorityDto();
         authorityDto.setId(authorityEntity.getAuthorityId().getUuid());
         authorityDto.setAuthority(authorityEntity.getAuthority());
         return authorityDto;
     }
 
-    public static AuthorityEntity toAuthorityEntity(AuthorityDto authorityDto) {
+    public static AuthorityEntity AuthoritytoEntity(AuthorityDto authorityDto) {
         AuthorityEntity authorityEntity = new AuthorityEntity();
         AuthorityId authorityId = new AuthorityId();
         authorityId.setUuid(authorityDto.getId());
