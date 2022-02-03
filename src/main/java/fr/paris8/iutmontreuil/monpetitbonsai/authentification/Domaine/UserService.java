@@ -3,7 +3,9 @@ import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.Aut
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.AuthorityId;
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.UserDao;
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.UserEntity;
+import fr.paris8.iutmontreuil.monpetitbonsai.authentification.UserMapper;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -31,17 +33,15 @@ public class UserService implements UserDetailsService {
         userEntity.setUsername(userCreationRequest.getUsername());
         userEntity.setPassword(passwordEncoder.encode(userCreationRequest.getPassword()));
         UserEntity savedUser = userDao.save(userEntity);
+
+
+        List<AuthorityEntity> authorities = new ArrayList<>();
+        authorities.add(new AuthorityEntity(AuthorityId.getDefaultAuthority(savedUser.getId())));
+        savedUser.setAuthorities(authorities);
+
         return userDao.save(savedUser);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        UserEntity user = userDao.findByUsername(s);
-        List<String> authoritiesList = userDao.findAuthorityByUserId(user.getId());
-        String authorities = String.join(",", authoritiesList);
-        return new AppUser(user.getId(), user.getUsername(), user.getPassword(),
-                AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));
-    }
 
     public List<UserEntity> findAll() {
         return userDao.findAll();
@@ -51,13 +51,15 @@ public class UserService implements UserDetailsService {
         return userDao.findById(id);
     }
 
-    public Optional<UserEntity> updatePassword(UUID id, String newPassword) {
-        Optional<UserEntity> user = userDao.findById(id);
-        if (user.isPresent()) {
-            user.get().setPassword(passwordEncoder.encode(newPassword));
-            return Optional.of(userDao.save(user.get()));
-        }
-        return user;
+
+
+    @Override
+    public UserDetails loadUserByUsername(String s) {
+        UserEntity user = userDao.findByUsername(s);
+        List<String> authoritiesList = userDao.findAuthorityByUserId(user.getId());
+        String authorities = String.join(",", authoritiesList);
+        return new AppUser(user.getId(), user.getUsername(), user.getPassword(),
+                AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));
     }
 
 
