@@ -69,45 +69,6 @@ public class UserService implements UserDetailsService {
                 AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));
     }
 
-    public User changeMyPassword(ChangePasswordRequest changePasswordRequest){
-
-        AppUser credentials = (AppUser) SecurityContextHolder.getContext().getAuthentication().getCredentials();
-        UserEntity userEntity = userDao.getById(credentials.getId());
-
-        boolean isEqualsOldPasswordBase = passwordEncoder.matches(changePasswordRequest.getOldPassword(), credentials.getPassword());
-        boolean isEqualsNewPassword = passwordEncoder.matches(changePasswordRequest.getNewPassword(), changePasswordRequest.getNewPasswordConfirmation());
-        boolean isEqualsOldNewPassword = passwordEncoder.matches(changePasswordRequest.getOldPassword(), changePasswordRequest.getNewPassword());
-
-        if(isEqualsOldPasswordBase){
-            if(isEqualsNewPassword){
-                if(!isEqualsOldNewPassword){
-                    userEntity.setPassword(changePasswordRequest.getNewPassword());
-                }
-            }
-        }
-
-        return UserMapper.entityToUser(userDao.save(userEntity));
-    }
-
-    public User changeUserAuthority(UUID uuid, ChangeUserAuthorityRequest changeUserAuthorityRequest){
-
-        AppUser credentials = (AppUser) SecurityContextHolder.getContext().getAuthentication().getCredentials();
-        UserEntity userEntityCurrent = userDao.getById(credentials.getId());
-        UserEntity userEntity = userDao.getById(uuid);
-
-        List<AuthorityEntity> ListeAuthority = new ArrayList<>();
-        AuthorityEntity authorityEntity = new AuthorityEntity();
-        AuthorityId authorityId = new AuthorityId();
-        authorityId.setAuthority(changeUserAuthorityRequest.getAuthority());
-        authorityEntity.setAuthorityId(authorityId);
-        ListeAuthority.add(authorityEntity);
-
-        if(userEntityCurrent.getAuthorities().get(0).getAuthority().equals("ADMIN")){
-            userEntity.setAuthorities(ListeAuthority);
-        }
-
-        return UserMapper.entityToUser(userDao.save(userEntity));
-    }
 
     public List<Owner> getOwners(){
         AppUser credentials = (AppUser) SecurityContextHolder.getContext().getAuthentication().getCredentials();

@@ -43,19 +43,6 @@ public class UserController {
         userService.create(createRequest);
     }
 
-    @PutMapping("/me/password")
-    public void changeMyPassword(@RequestBody ChangePasswordRequest changePasswordRequest){
-
-        userService.changeMyPassword(changePasswordRequest);
-
-    }
-
-    @PutMapping("/users/{uuid}/authority")
-    public void changeUserAuthority(@PathVariable UUID uuid, @RequestBody ChangeUserAuthorityRequest changeUserAuthorityRequest){
-
-        userService.changeUserAuthority(uuid, changeUserAuthorityRequest);
-    }
-
 
 
     @GetMapping("/me")
