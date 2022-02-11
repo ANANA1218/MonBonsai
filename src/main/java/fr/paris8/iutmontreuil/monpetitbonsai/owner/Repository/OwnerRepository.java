@@ -3,8 +3,8 @@ package fr.paris8.iutmontreuil.monpetitbonsai.owner.Repository;
 import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.BonsaiDao;
 import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.OwnerEntity;
 import fr.paris8.iutmontreuil.monpetitbonsai.owner.Bonsai;
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.DAO.OwnerDAO;
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.Mapper.OwnerMapper;
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.OwnerDAO;
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.OwnerMapper;
 
 import fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner;
 import org.springframework.stereotype.Component;
@@ -73,19 +73,8 @@ public class OwnerRepository {
     }
 
 
-    public Bonsai transferBonsaiToOwner(Owner new_owner, Bonsai bonsai) {
-        ownerDao.addNewOwner(new_owner.getId(), bonsai.getId());
-        return bonsai;
-    }
 
-    public Bonsai addBonsaiToOwner(Owner owner, Bonsai bonsai) {
-        ownerDao.addNewBonsai(owner.getId(), bonsai.getId());
-        return bonsai;
-    }
 
-    public Optional<Bonsai> findBonsaiById(UUID id) {
-        return bonsaiDao.findById(id).map(OwnerMapper::EntityToBonsai);
-    }
 
 
 

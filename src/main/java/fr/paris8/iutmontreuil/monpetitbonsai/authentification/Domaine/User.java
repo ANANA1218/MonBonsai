@@ -1,4 +1,4 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.authentification.Exposition;
+package fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine;
 
 
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.AuthorityId;
@@ -6,7 +6,7 @@ import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.Aut
 import java.util.List;
 import java.util.UUID;
 
-public class UserDto {
+public class User {
 
     private UUID id;
     private String username;

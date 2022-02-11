@@ -11,7 +11,7 @@ import java.util.UUID;
 @Repository
 public interface UserDao extends JpaRepository<UserEntity, UUID> {
 
-    UserEntity findByUsername(String username) throws UsernameNotFoundException;
+    UserEntity findByUsername(String username) ;
 
     @Query(value = "SELECT A.authority FROM authorities A WHERE A.id = ?1", nativeQuery = true)
     List<String> findAuthorityByUserId(UUID id);

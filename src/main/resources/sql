@@ -15,7 +15,19 @@ bonsais_id varchar not null
 
 );
 
+create table users (
+    id UUID primary key not null,
+    name varchar(200) not null,
+    username varchar(200) unique,
+    password varchar(1000),
+    enabled boolean default true
+);
 
+create table authorities (
+    user_id uuid,
+    authority varchar(200),
+
+);
 
 ALTER TABLE Bonsai
 ALTER COLUMN id TYPE type UUID;
@@ -97,3 +109,6 @@ INSERT into repotting(id, repotting_date,bonsai_id) values ('5ea6d746-5f35-11ec-
 INSERT into repotting(id, repotting_date,bonsai_id) values ('64f7222c-5f35-11ec-bf63-0242ac130002','2021-08-18T08:50:18.719Z','c3e53589-dbc4-4d34-b043-cbcf709d5691');
 
 
+insert into users(id, name, username, password) values ('5ed4d956-b6c6-4c92-a267-85df4b0ad1ab', 'AnnA', 'BABABA', 'JUJU1212$$'), ('03b4f4fa-8b20-11ec-a8a3-0242ac120002', 'Solene', 'POUTINE', 'lala1616$$');
+
+insert into authorities(user_id, authority) VALUES ('5ed4d956-b6c6-4c92-a267-85df4b0ad1ab', 'ADMIN'), ('03b4f4fa-8b20-11ec-a8a3-0242ac120002', 'USER');

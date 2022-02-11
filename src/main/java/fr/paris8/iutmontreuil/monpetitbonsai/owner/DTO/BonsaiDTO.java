@@ -3,7 +3,7 @@ package fr.paris8.iutmontreuil.monpetitbonsai.owner.DTO;
 import java.util.UUID;
 
 public class BonsaiDTO {
-    private UUID id;
+    private UUID uuid;
     private String name;
     private String species;
     private int acquisition_age;
@@ -13,11 +13,11 @@ public class BonsaiDTO {
     }
 
     public UUID getId() {
-        return id;
+        return uuid;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setId(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public String getName() {

@@ -1,81 +1,79 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.authentification.Exposition;
 
-import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.AppUser;
+
+import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.ChangePasswordRequest;
+import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.ChangeUserAuthorityRequest;
+import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.UserCreationRequest;
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.UserService;
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.UserMapper;
-import org.springframework.http.HttpStatus;
+import fr.paris8.iutmontreuil.monpetitbonsai.owner.DTO.OwnerDTO;
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.OwnerMapper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private final UserService userService;
+
+    private UserService userService;
 
     public UserController(UserService userService) {
+
         this.userService = userService;
     }
 
-
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UserDto> findAll() {
-        return userService.findAll().stream()
-                .map(UserMapper::UsertoDto)
+
+        return userService.findAll()
+                .stream()
+                .map(UserMapper::userToDto)
                 .collect(Collectors.toList());
     }
 
+    @PostMapping
+    public void create (@RequestBody UserCreationRequest createRequest){
 
-
-
-
-
-
-
-
-
-    @PutMapping("/me/password")
-    public ResponseEntity<UserDto> updatePassword(@RequestBody String newPassword) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.getPrincipal() instanceof AppUser) {
-            AppUser credentials = (AppUser) authentication.getPrincipal();
-            if (credentials != null) {
-                return userService.updatePassword(credentials.getId(), newPassword)
-                        .map(u -> ResponseEntity.ok(UserMapper.UsertoDto(u)))
-                        .orElse(ResponseEntity.notFound().build());
-            }
-        }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        userService.create(createRequest);
     }
 
- //   @PutMapping("/{id}/authority")
-   // public ResponseEntity<UserDto> updateAuthority(@PathVariable UUID id, @RequestBody String newAuthority) {
+    @PutMapping("/me/password")
+    public void changeMyPassword(@RequestBody ChangePasswordRequest changePasswordRequest){
 
-       //     return userService.updateAuthority(id)
-                  //  .map(u -> ResponseEntity.ok(UserMapper.toUserDto(u)))
-                //    .orElse(ResponseEntity.notFound().build());
+        userService.changeMyPassword(changePasswordRequest);
 
-//    }
+    }
+
+    @PutMapping("/users/{uuid}/authority")
+    public void changeUserAuthority(@PathVariable UUID uuid, @RequestBody ChangeUserAuthorityRequest changeUserAuthorityRequest){
+
+        userService.changeUserAuthority(uuid, changeUserAuthorityRequest);
+    }
+
 
 
     @GetMapping("/me")
-    public ResponseEntity<UserDto> getMe() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.getPrincipal() instanceof AppUser) {
-            AppUser credentials = (AppUser) authentication.getPrincipal();
-            if (credentials != null) {
-                Optional<UserDto> user = userService.getById(credentials.getId()).map(UserMapper::UsertoDto);
-                if (user.isPresent()) {
-                    return ResponseEntity.ok(user.get());
-                }
-            }
-        }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    public ResponseEntity<UserDto> getCurrentUser (@RequestBody UserDto userDto){
+
+        return ResponseEntity.ok(userDto);
     }
+
+    @GetMapping("/owners")
+    public List<OwnerDTO> getOwners (@RequestBody OwnerDTO ownerDTO){
+
+        return userService.getOwners()
+                .stream()
+                .map(OwnerMapper::OwnertoDto)
+                .collect(Collectors.toList());
+    }
+
 }
+
+
+

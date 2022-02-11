@@ -1,7 +1,9 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.authentification.Config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.UserCredentials;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-
 
 public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 

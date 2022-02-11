@@ -1,43 +1,48 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.authentification;
 
-import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.UserCreationRequest;
-import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Exposition.AuthorityDto;
+
+import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.User;
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Exposition.UserDto;
-import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.AuthorityEntity;
-import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.AuthorityId;
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.UserEntity;
 
 import java.util.stream.Collectors;
 
 public class UserMapper {
 
-    public static UserCreationRequest UserCreationRequesttoEntity(UserDto userDto) {
-        UserCreationRequest userCreationRequest = new UserCreationRequest();
-        userCreationRequest.setUsername(userDto.getUsername());
-        return userCreationRequest;
+    public static User dtoToUser(UserDto userDto) {
+        User user = new User();
+        user.setId(userDto.getId());
+        user.setUsername(userDto.getUsername());
+        user.setPassword(userDto.getPassword());
+        user.setAuthorities(userDto.getAuthorities().stream().collect(Collectors.toList()));
+        return user;
     }
 
-    public static UserDto UsertoDto(UserEntity userEntity) {
+    public static User entityToUser(UserEntity userEntity) {
+        User user = new User();
+        user.setId(userEntity.getId());
+        user.setUsername(userEntity.getUsername());
+        user.setPassword(userEntity.getPassword());
+        //    user.setAuthorities(userEntity.getAuthorities().stream().collect(Collectors.toList()));
+        return user;
+    }
+
+    public static UserDto userToDto(User user) {
         UserDto userDto = new UserDto();
-        userDto.setId(userEntity.getId());
-        userDto.setUsername(userEntity.getUsername());
-        userDto.setEnabled(userEntity.isEnabled());
-        userDto.setAuthorities(userEntity.getAuthorities().stream().map(UserMapper::AuthoritytoDto).collect(Collectors.toList()));
+        userDto.setId(user.getId());
+        userDto.setUsername(user.getUsername());
+        userDto.setPassword(user.getPassword());
+        // userDto.setAuthorities(user.getAuthorities().stream().collect(Collectors.toList()));
         return userDto;
     }
 
-    public static AuthorityDto AuthoritytoDto(AuthorityEntity authorityEntity) {
-        AuthorityDto authorityDto = new AuthorityDto();
-        authorityDto.setId(authorityEntity.getAuthorityId().getUuid());
-        authorityDto.setAuthority(authorityEntity.getAuthority());
-        return authorityDto;
+    public static UserEntity userToEntity(User user) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId(user.getId());
+        userEntity.setUsername(user.getUsername());
+        userEntity.setPassword(user.getPassword());
+        //  userEntity.setAuthorities(user.getAuthorities().stream().collect(Collectors.toList()));
+        return userEntity;
     }
 
-    public static AuthorityEntity AuthoritytoEntity(AuthorityDto authorityDto) {
-        AuthorityEntity authorityEntity = new AuthorityEntity();
-        AuthorityId authorityId = new AuthorityId();
-        authorityId.setUuid(authorityDto.getId());
-        authorityId.setAuthority(authorityDto.getAuthority());
-        return authorityEntity;
-    }
 }

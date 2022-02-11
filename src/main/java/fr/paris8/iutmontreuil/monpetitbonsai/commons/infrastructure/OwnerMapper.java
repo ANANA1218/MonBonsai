@@ -1,4 +1,4 @@
-package fr.paris8.iutmontreuil.monpetitbonsai.owner.Mapper;
+package fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure;
 
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.infrastuture.Repository.BonsaiMapper;
 import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.BonsaiEntity;

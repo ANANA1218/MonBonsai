@@ -1,10 +1,21 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine;
 
 public class UserCreationRequest {
+
+
     private String username;
     private String password;
+    private String passwordConfirmation;
 
     public UserCreationRequest() {
+
+    }
+
+
+    public UserCreationRequest(String username, String password, String passwordConfirmation) {
+        this.username = username;
+        this.password = password;
+        this.passwordConfirmation = passwordConfirmation;
     }
 
     public String getUsername() {
@@ -21,5 +32,13 @@ public class UserCreationRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPasswordConfirmation() {
+        return passwordConfirmation;
+    }
+
+    public void setPasswordConfirmation(String passwordConfirmation) {
+        this.passwordConfirmation = passwordConfirmation;
     }
 }
