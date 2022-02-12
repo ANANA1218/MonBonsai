@@ -1,15 +1,14 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.authentification.Exposition;
 
 
-import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.ChangePasswordRequest;
-import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.ChangeUserAuthorityRequest;
-import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.UserCreationRequest;
-import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.UserService;
+import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.*;
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.UserMapper;
 import fr.paris8.iutmontreuil.monpetitbonsai.owner.DTO.OwnerDTO;
 import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.OwnerMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,8 +26,10 @@ public class UserController {
         this.userService = userService;
     }
 
+
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+  //  @PreAuthorize("hasAuthority('ADMIN')")
+   // @PreAuthorize("hasAuthority('STAFF')")
     public List<UserDto> findAll() {
 
         return userService.findAll()
@@ -44,21 +45,15 @@ public class UserController {
     }
 
 
-
     @GetMapping("/me")
-    public ResponseEntity<UserDto> getCurrentUser (@RequestBody UserDto userDto){
-
-        return ResponseEntity.ok(userDto);
+    public ResponseEntity<UserDto> getMe(){
+        return userService.getMe().map(UserMapper::userToDto)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/owners")
-    public List<OwnerDTO> getOwners (@RequestBody OwnerDTO ownerDTO){
 
-        return userService.getOwners()
-                .stream()
-                .map(OwnerMapper::OwnertoDto)
-                .collect(Collectors.toList());
-    }
+
 
 }
 

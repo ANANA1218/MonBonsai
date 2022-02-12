@@ -68,18 +68,14 @@ public class OwnerController {
         ownerService.deleteById(uuid);
     }
 
-
-
-
-
-
     @GetMapping("/{id}/bonsai")
-    public List<BonsaiDTO> getBonsai(@PathVariable UUID uuid) {
-        return ownerService.getBonsai(uuid)
+    public List<BonsaiDTO> getBonsai(@PathVariable UUID id) {
+        return ownerService.getBonsai(id)
                 .stream()
                 .map(OwnerMapper::BonsaitoDto)
                 .collect(Collectors.toList());
     }
+
 
 
 

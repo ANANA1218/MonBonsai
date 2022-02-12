@@ -4,9 +4,19 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bed735a7-0880-40fd-a536-b6a0a3016b13" name="Default Changelist" comment="test">
+    <list default="true" id="bed735a7-0880-40fd-a536-b6a0a3016b13" name="Default Changelist" comment="user change MPD et Authority">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/Domaine/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/Domaine/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/Exposition/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/Exposition/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/Infrastructure/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/Infrastructure/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/commons/infrastructure/OwnerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/commons/infrastructure/OwnerEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/owner/Controller/OwnerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/owner/Controller/OwnerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/FrameWorkProject.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,12 +101,16 @@
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
       <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
         <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
     <option name="myId2Visible">
       <map>
-        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
     </option>
   </component>
@@ -271,7 +285,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -354,7 +369,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643899256106</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="user change MPD et Authority">
+      <created>1644599654978</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1644599654978</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -427,10 +449,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="user selection" />
-    <option name="LAST_COMMIT_MESSAGE" value="user selection" />
+    <MESSAGE value="user change MPD et Authority" />
+    <option name="LAST_COMMIT_MESSAGE" value="user change MPD et Authority" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -442,7 +466,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/Domaine/UserService.java</url>
-          <line>64</line>
+          <line>70</line>
           <properties class="fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.UserService">
             <option name="EMULATED" value="true" />
           </properties>

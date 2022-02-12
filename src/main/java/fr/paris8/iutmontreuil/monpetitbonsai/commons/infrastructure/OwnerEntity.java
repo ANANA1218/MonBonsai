@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity(name = "owner")
-@Table(name = "owner")
+@Table(name = "users")
 public class OwnerEntity {
 
     @Id
@@ -15,7 +15,7 @@ public class OwnerEntity {
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id")
     private UUID id;
-    @Column(name = "name")
+    @Column(name = "username")
     private String name;
     @OneToMany (targetEntity = BonsaiEntity.class, mappedBy = "ownerEntity")
     private List<BonsaiEntity> Bonsai ;

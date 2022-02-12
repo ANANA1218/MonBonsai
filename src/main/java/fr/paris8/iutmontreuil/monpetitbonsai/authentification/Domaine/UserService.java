@@ -6,6 +6,7 @@ import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.Aut
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.UserDao;
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.UserEntity;
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.UserMapper;
+import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.Bonsai;
 import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.BonsaiDao;
 import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.OwnerDAO;
 import fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -43,6 +45,10 @@ public class UserService implements UserDetailsService {
                 .collect(Collectors.toList());
     }
 
+    public Optional<User> getMe() {
+        AppUser credentials = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userDao.findById(credentials.getId()).map(UserMapper::entityToUser);
+    }
 
 
     @Transactional
@@ -70,19 +76,21 @@ public class UserService implements UserDetailsService {
     }
 
 
-    public List<Owner> getOwners(){
-        AppUser credentials = (AppUser) SecurityContextHolder.getContext().getAuthentication().getCredentials();
-        UserEntity userEntityCurrent = userDao.getById(credentials.getId());
 
-        if(userEntityCurrent.getAuthorities().get(0).getAuthority().equals("ADMIN")){
-            OwnerDAO ownerDao = null;
-            BonsaiDao bonsaiDao = null;
-            OwnerRepository ownerRepository = new OwnerRepository(ownerDao, bonsaiDao);
-            return ownerRepository.findAll();
+    public Optional<UserEntity> updatePassword(UUID id, String newPassword) {
+        Optional<UserEntity> user = userDao.findById(id);
+        if (user.isPresent()) {
+            user.get().setPassword(passwordEncoder.encode(newPassword));
+            return Optional.of(userDao.save(user.get()));
         }
-
-        return null;
+        return user;
     }
+
+
+
+
+
 }
+
 
 

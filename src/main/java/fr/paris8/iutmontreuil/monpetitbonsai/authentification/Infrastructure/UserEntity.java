@@ -50,19 +50,19 @@ public class UserEntity {
         this.username = username;
     }
 
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
     public List<AuthorityEntity> getAuthorities() {
         return authorities;
     }
 
     public void setAuthorities(List<AuthorityEntity> authorities) {
         this.authorities = authorities;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

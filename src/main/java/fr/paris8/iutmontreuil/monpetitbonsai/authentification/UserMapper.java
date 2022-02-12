@@ -2,7 +2,11 @@ package fr.paris8.iutmontreuil.monpetitbonsai.authentification;
 
 
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.User;
+import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.UserCreationRequest;
+import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Exposition.AuthorityDto;
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Exposition.UserDto;
+import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.AuthorityEntity;
+import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.AuthorityId;
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.UserEntity;
 
 import java.util.stream.Collectors;
