@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bed735a7-0880-40fd-a536-b6a0a3016b13" name="Default Changelist" comment="reste put et transfert owner bonsai">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/commons/infrastructure/Authority.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/commons/infrastructure/AuthorityDAO.java" afterDir="false" />
+    <list default="true" id="bed735a7-0880-40fd-a536-b6a0a3016b13" name="Default Changelist" comment="TRANSFERT owner bonsai + GET BONSAI ET ENDPOINT">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/Domaine/ChangePasswordRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/Domaine/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/Domaine/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/Exposition/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/Exposition/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/Infrastructure/AuthorityId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/Infrastructure/AuthorityId.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/authentification/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/paris8/iutmontreuil/monpetitbonsai/owner/Mapper/BonsaiMapper.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -381,7 +373,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644700876126</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="TRANSFERT owner bonsai + GET BONSAI ET ENDPOINT">
+      <created>1644770486995</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1644770486996</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -460,7 +459,8 @@
     <MESSAGE value="user selection" />
     <MESSAGE value="user change MPD et Authority" />
     <MESSAGE value="reste put et transfert owner bonsai" />
-    <option name="LAST_COMMIT_MESSAGE" value="reste put et transfert owner bonsai" />
+    <MESSAGE value="TRANSFERT owner bonsai + GET BONSAI ET ENDPOINT" />
+    <option name="LAST_COMMIT_MESSAGE" value="TRANSFERT owner bonsai + GET BONSAI ET ENDPOINT" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
