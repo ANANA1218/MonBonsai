@@ -3,11 +3,10 @@ package fr.paris8.iutmontreuil.monpetitbonsai.authentification.Exposition;
 
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Domaine.*;
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.UserMapper;
-import fr.paris8.iutmontreuil.monpetitbonsai.owner.DTO.OwnerDTO;
-import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.OwnerMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +27,7 @@ public class UserController {
 
 
     @GetMapping
-  //  @PreAuthorize("hasAuthority('ADMIN')")
-   // @PreAuthorize("hasAuthority('STAFF')")
+     @PreAuthorize("hasAuthority('ADMIN')")
     public List<UserDto> findAll() {
 
         return userService.findAll()
@@ -39,21 +37,46 @@ public class UserController {
     }
 
     @PostMapping
-    public void create (@RequestBody UserCreationRequest createRequest){
+    public void create(@RequestBody UserCreationRequest createRequest) {
 
         userService.create(createRequest);
     }
 
 
     @GetMapping("/me")
-    public ResponseEntity<UserDto> getMe(){
+    public ResponseEntity<UserDto> getMe() {
         return userService.getMe().map(UserMapper::userToDto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
 
+    @PutMapping("/me/password")
+    public ResponseEntity<UserDto> updatePassword(@RequestBody String newPassword) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.getPrincipal() instanceof AppUser) {
+            AppUser credentials = (AppUser) authentication.getPrincipal();
+            if (credentials != null) {
+                return userService.updatePassword(credentials.getId(), newPassword)
+                        .map(UserMapper::toUserDto)
+                        .map(ResponseEntity::ok)
+                        .orElse(ResponseEntity.notFound().build());
+            }
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PutMapping("/{id}/authority")
+    public ResponseEntity<User> updateAuthority(@PathVariable UUID id, @RequestBody String Authority) {
+        userService.updateAuthority(id, Authority);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{uuid}")
+    public void deleteById(@PathVariable UUID uuid) {
+        userService.deleteById(uuid);
+    }
 
 }
 

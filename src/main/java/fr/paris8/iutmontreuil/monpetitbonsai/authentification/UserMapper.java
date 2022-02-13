@@ -27,7 +27,7 @@ public class UserMapper {
         user.setId(userEntity.getId());
         user.setUsername(userEntity.getUsername());
         user.setPassword(userEntity.getPassword());
-        //    user.setAuthorities(userEntity.getAuthorities().stream().collect(Collectors.toList()));
+        //user.setAuthorities(userEntity.getAuthorities().stream().collect(Collectors.toList()));
         return user;
     }
 
@@ -36,17 +36,16 @@ public class UserMapper {
         userDto.setId(user.getId());
         userDto.setUsername(user.getUsername());
         userDto.setPassword(user.getPassword());
-        // userDto.setAuthorities(user.getAuthorities().stream().collect(Collectors.toList()));
         return userDto;
     }
+    public static UserDto toUserDto(UserEntity userEntity) {
+        UserDto userDto = new UserDto();
+        userDto.setId(userEntity.getId());
+        userDto.setUsername(userEntity.getUsername());
+        userDto.setEnabled(userEntity.isEnabled());
 
-    public static UserEntity userToEntity(User user) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setId(user.getId());
-        userEntity.setUsername(user.getUsername());
-        userEntity.setPassword(user.getPassword());
-        //  userEntity.setAuthorities(user.getAuthorities().stream().collect(Collectors.toList()));
-        return userEntity;
+        return userDto;
+
     }
 
 }

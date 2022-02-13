@@ -7,6 +7,8 @@ import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.Use
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.UserEntity;
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.UserMapper;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.Bonsai;
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.Authority;
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.AuthorityDAO;
 import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.BonsaiDao;
 import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.OwnerDAO;
 import fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner;
@@ -31,10 +33,12 @@ public class UserService implements UserDetailsService {
 
     private final UserDao userDao;
     private final PasswordEncoder passwordEncoder;
+    private final AuthorityDAO authorityDao;
 
-    public UserService(UserDao userDao, PasswordEncoder passwordEncoder) {
+    public UserService(UserDao userDao, PasswordEncoder passwordEncoder, AuthorityDAO authorityDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
+        this.authorityDao = authorityDao;
     }
 
     public List<User> findAll(){
@@ -77,6 +81,7 @@ public class UserService implements UserDetailsService {
 
 
 
+
     public Optional<UserEntity> updatePassword(UUID id, String newPassword) {
         Optional<UserEntity> user = userDao.findById(id);
         if (user.isPresent()) {
@@ -87,6 +92,14 @@ public class UserService implements UserDetailsService {
     }
 
 
+    public void updateAuthority(UUID id, String authority) {
+        authorityDao.clear(id);
+        authorityDao.save(new AuthorityEntity(new AuthorityId(id, authority)));
+    }
+
+    public void deleteById(UUID id) {
+        userDao.deleteById(id);
+    }
 
 
 

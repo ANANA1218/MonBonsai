@@ -1,5 +1,7 @@
 package fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure;
 
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.Authority;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
