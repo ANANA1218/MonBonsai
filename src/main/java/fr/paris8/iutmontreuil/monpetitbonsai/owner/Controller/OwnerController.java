@@ -6,6 +6,7 @@ import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.OwnerMapper;
 import fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner;
 import fr.paris8.iutmontreuil.monpetitbonsai.owner.Service.OwnerService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -62,7 +63,7 @@ public class OwnerController {
 
     }
 
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{uuid}")
     public void deleteById(@PathVariable UUID uuid) {
         ownerService.deleteById(uuid);
@@ -75,10 +76,6 @@ public class OwnerController {
                 .map(OwnerMapper::BonsaitoDto)
                 .collect(Collectors.toList());
     }
-
-
-
-
 
 
 }

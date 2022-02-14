@@ -7,10 +7,7 @@ import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.Use
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.Infrastructure.UserEntity;
 import fr.paris8.iutmontreuil.monpetitbonsai.authentification.UserMapper;
 import fr.paris8.iutmontreuil.monpetitbonsai.bonsai.domain.Modele.Bonsai;
-import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.Authority;
-import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.AuthorityDAO;
-import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.BonsaiDao;
-import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.OwnerDAO;
+import fr.paris8.iutmontreuil.monpetitbonsai.commons.infrastructure.*;
 import fr.paris8.iutmontreuil.monpetitbonsai.owner.Owner;
 import fr.paris8.iutmontreuil.monpetitbonsai.owner.Repository.OwnerRepository;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -32,11 +29,14 @@ import java.util.stream.Collectors;
 public class UserService implements UserDetailsService {
 
     private final UserDao userDao;
+    private final OwnerDAO ownerDAO;
     private final PasswordEncoder passwordEncoder;
     private final AuthorityDAO authorityDao;
 
-    public UserService(UserDao userDao, PasswordEncoder passwordEncoder, AuthorityDAO authorityDao) {
+
+    public UserService(UserDao userDao, OwnerDAO ownerDAO, PasswordEncoder passwordEncoder, AuthorityDAO authorityDao) {
         this.userDao = userDao;
+        this.ownerDAO = ownerDAO;
         this.passwordEncoder = passwordEncoder;
         this.authorityDao = authorityDao;
     }
@@ -102,7 +102,13 @@ public class UserService implements UserDetailsService {
     }
 
 
+    public List<Owner> getOwners(){
 
+        return ownerDAO.findAll()
+                .stream()
+                .map(OwnerMapper::EntityToOwner)
+                .collect(Collectors.toList());
+    }
 }
 
 

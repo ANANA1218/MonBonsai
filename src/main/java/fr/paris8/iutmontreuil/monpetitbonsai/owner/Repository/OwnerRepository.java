@@ -64,15 +64,12 @@ public class OwnerRepository {
     }
 //
 
-    public List<Bonsai> getBonsai(UUID uuid) {
-        return bonsaiDao.findAll()
-                .stream()
-                .filter(bonsai -> bonsai.getOwnerEntity().getId().equals(uuid))
+    public List<Bonsai> getBonsai(UUID id) {
+        return bonsaiDao.findAll().stream()
+                .filter(b -> b.getOwnerEntity() != null && b.getOwnerEntity().getId().equals(id))
                 .map(OwnerMapper::EntityToBonsai)
                 .collect(Collectors.toList());
     }
-
-
 
 
 
