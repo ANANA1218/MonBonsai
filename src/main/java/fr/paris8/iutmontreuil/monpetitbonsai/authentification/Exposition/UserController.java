@@ -58,6 +58,7 @@ public class UserController {
     }
 
 
+
     @PutMapping("/me/password")
     public ResponseEntity<UserDto> updatePassword(@RequestBody String newPassword) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
